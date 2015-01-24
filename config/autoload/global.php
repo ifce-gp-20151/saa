@@ -34,6 +34,6 @@ return array(
     ),
     'db' => array(
         'driver' => 'Pdo',
-        'dsn' => 'pgsql:host=localhost;dbname=database_dev',
+        'dsn' => 'pgsql:host=localhost;dbname=saa_dev',
     ),
 );

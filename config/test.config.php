@@ -8,7 +8,7 @@ return array(
     ),
     'db' => array(
         'driver' => 'PDO',
-        'dsn' => 'pgsql:host=localhost;dbname=database_test',
+        'dsn' => 'pgsql:host=localhost;dbname=saa_test',
         'username' => '',
         'password' => '',
     )
