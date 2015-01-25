@@ -1,3 +1,3 @@
 ### saa
 
-Sistema de Atendimento ao Aluno
+Sistema de Apoio ao Aluno
