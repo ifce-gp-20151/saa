@@ -21,6 +21,7 @@ return array(
 
 Run ACL inserts.
 
+* /docs/db/ddl.acl.sql
 * /docs/db/dml.acl.sql
 
 Install mcrypt for hash operations: `sudo apt-get install php5-mcrypt`
@@ -33,10 +34,10 @@ Create file `project-name` at `/etc/apache2/sites-enabled` with the following co
 
 ~~~
 <VirtualHost *:80>
-	ServerName project-name.local
-	DocumentRoot /path/to/project-name/public
+	ServerName saa.local
+	DocumentRoot /path/to/saa/public
 
-	<Directory /path/to/project-name/public>
+	<Directory /path/to/saa/public>
 		DirectoryIndex index.php
 		AllowOverride All
 		Order allow,deny
@@ -51,11 +52,11 @@ Create file `project-name.conf` at `/etc/apache2/sites-enabled` with the followi
 
 ~~~
 <VirtualHost *:80>
-    ServerName project-name.local
+    ServerName saa.local
 
-    DocumentRoot /path/to/project-name/public
+    DocumentRoot /path/to/saa/public
 
-    <Directory /path/to/project-name/public/>
+    <Directory /path/to/saa/public/>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -70,6 +71,10 @@ Restart apache2: `sudo service apache2 restart`
 
 Create a virtual host name, edit `/etc/hosts`, and add the line to the end:
 
-`127.0.1.1       project-name.local`
+`127.0.1.1       saa.local`
 
 Ok, you're good to go.
+
+## Traps
+
+<http://stackoverflow.com/questions/26377753/zend-authentication-storage-session-session-validation-failed-any-ideas>

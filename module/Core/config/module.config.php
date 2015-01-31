@@ -16,6 +16,7 @@ return array(
 
                return $log;
             },
+            'PdoResource' => 'Core\Db\Service\PdoResourceFactory',
         ),
     ),
 );

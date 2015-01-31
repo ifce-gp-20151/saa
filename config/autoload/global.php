@@ -36,4 +36,17 @@ return array(
         'driver' => 'Pdo',
         'dsn' => 'pgsql:host=localhost;dbname=saa_dev',
     ),
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOPgSql\Driver',
+                'pdo' => 'PdoResource',
+                /*'params' => array(
+                    'host'     => 'localhost',
+                    'port'     => '5432',
+                    'dbname'   => 'saa_dev',
+                )*/
+            )
+        )
+    ),
 );

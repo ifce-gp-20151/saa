@@ -19,7 +19,7 @@ class Module
             }
         }, 100);
     }
-    
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -43,7 +43,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'DbAdapter' => 'Core\Db\AdapterServiceFactory'
+                'DbAdapter' => 'Core\Db\AdapterServiceFactory',
             )
         );
     }

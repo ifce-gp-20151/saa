@@ -7,10 +7,13 @@
  */
 return array(
     'modules' => array(
-        'Application',
         'Core',
         'ZealMessages',
         'ZFTool',
+        'ZendDeveloperTools',
+        'DoctrineModule',
+        'DoctrineORMModule',
+        'Application',
     ),
     'module_listener_options' => array(
         'config_glob_paths' => array(
