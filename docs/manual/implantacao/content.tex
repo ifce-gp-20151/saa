@@ -12,6 +12,88 @@ ou Ubuntu Server 14.04 LTS
 \textbf{Obs.}: Todo o restante da documentação é baseada nestes sistema,
 pois ambos utilizam a mesma tecnologia para instalação de pacotes.
 
+\section{Ambiente de execução}\label{ambiente-de-execuuxe7uxe3o}
+
+O projeto necessita do \texttt{php} para a sua execução. É necessário
+instalar a versão \textbf{\textgreater{}=5.3}, devido ao Zend 2 fazer
+utilização de \emph{namespaces}, \emph{late static binding}, funções
+\emph{lambda}, \emph{closures}.
+
+Mais detalhes em:
+\url{http://framework.zend.com/manual/current/en/ref/overview.html}
+
+A instalação pode ser feita da seguinte maneira:
+
+\begin{verbatim}
+sudo apt-get install php5
+\end{verbatim}
+
+Verifique a versão: \texttt{php -v}.
+
+Para algumas operações com \emph{hash}, é necessário a instalação do
+\texttt{php5-mcrypt}:
+
+\begin{verbatim}
+sudo apt-get install php5-mcrypt
+\end{verbatim}
+
+Para a internacionalização (i18n) do projeto é necessário o pacote
+\texttt{php5-intl}:
+
+\begin{verbatim}
+sudo apt-get install php5-intl
+\end{verbatim}
+
+\section{Servidor}\label{servidor}
+
+Para servir o sistema podemos utilizar
+\href{http://httpd.apache.org/}{Apache2} ou
+\href{http://nginx.org/}{Nginx}, sendo que este último é o mais
+indicado.
+
+\subsection{Instalação Apache2}\label{instalauxe7uxe3o-apache2}
+
+\begin{verbatim}
+sudo apt-get install apache2
+\end{verbatim}
+
+\subsubsection{Configuração Apache2 (2.4 ou
+superior)}\label{configurauxe7uxe3o-apache2-2.4-ou-superior}
+
+Crie o arquivo saa.conf dentro de \texttt{/etc/apache2/sites-available}
+com o seguinte conteúdo:
+
+\begin{verbatim}
+<VirtualHost *:80>
+    ServerName saa.ifce.edu.br
+
+    DocumentRoot /path/to/saa/public
+
+    <Directory /path/to/saa/public/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog /var/log/apache2/error.log
+    CustomLog /var/log/apache2/access.log combined
+</VirtualHost>
+\end{verbatim}
+
+Modifique o caminho do projeto para o local adequado.
+
+Recarregue as configurações com: \texttt{sudo service apache2 reload}.
+
+\subsection{Instalação Nginx}\label{instalauxe7uxe3o-nginx}
+
+\begin{verbatim}
+sudo apt-get install nginx
+\end{verbatim}
+
+\subsubsection{Configuração Nginx}\label{configurauxe7uxe3o-nginx}
+
+\emph{Em desenvolvimento\ldots{}}
+
 \section{Banco de dados}\label{banco-de-dados}
 
 O SAA utiliza \href{http://www.postgresql.org/}{PostgreSQL} como banco
@@ -69,7 +151,8 @@ em \url{https://github.com/ifce-gp-20151/saa/releases}.
 
 \subsection{Instalando dependências}\label{instalando-dependuxeancias}
 
-Das dependências descritas em \texttt{composer.json}, são necessárias:
+Das dependências descritas em \texttt{composer.json}, são necessárias
+para a produção:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -81,7 +164,7 @@ Das dependências descritas em \texttt{composer.json}, são necessárias:
   dino/dompdf-module
 \end{itemize}
 
-Subir para o servidor somente o necessário para o funcionamento.
+Envie para o servidor somente o necessário para o funcionamento.
 
 Em \texttt{config/application.config.php} comentar as linhas referentes
 aos \texttt{modules}:
@@ -116,9 +199,17 @@ os dados:
 ),
 \end{verbatim}
 
-\subsection{Scripts de ACL}\label{scripts-de-acl}
+\subsection{Script de criação do banco de
+dados}\label{script-de-criauxe7uxe3o-do-banco-de-dados}
 
-\emph{Em desenvolvimento\ldots{}}
+Após criar o banco de dados \texttt{saa\_production} é necessário
+executar o script \texttt{docs/db/ddl.sql}, que contém a definição das
+tabelas, relacionamentos, etc.
+
+\subsection{Script de ACL}\label{script-de-acl}
+
+Executar o arquivo \texttt{docs/db/dml.acl.sql} que contém as regras de
+Autorização do sistema.
 
 \subsection{Merge de release anterior}\label{merge-de-release-anterior}
 
