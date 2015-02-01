@@ -1,0 +1,216 @@
+\section{Introdução}\label{introduuxe7uxe3o}
+
+Este documento visa mostrar como o sistema SAA deve ser instalado e
+configurado para ambiente de produção.
+
+\section{Sistema Operacional}\label{sistema-operacional}
+
+Debian 7 wheezy (\href{http://debian.c3sl.ufpr.br/debian-cd/}{Download})
+ou Ubuntu Server 14.04 LTS
+(\href{http://www.ubuntu.com/download/server}{Download})
+
+\textbf{Obs.}: Todo o restante da documentação é baseada nestes sistema,
+pois ambos utilizam a mesma tecnologia para instalação de pacotes.
+
+\section{Ambiente de execução}\label{ambiente-de-execuuxe7uxe3o}
+
+O projeto necessita do \texttt{php} para a sua execução. É necessário
+instalar a versão \textbf{\textgreater{}=5.3}, devido ao Zend 2 fazer
+utilização de \emph{namespaces}, \emph{late static binding}, funções
+\emph{lambda}, \emph{closures}.
+
+Mais detalhes em:
+\url{http://framework.zend.com/manual/current/en/ref/overview.html}
+
+A instalação pode ser feita da seguinte maneira:
+
+\begin{verbatim}
+sudo apt-get install php5
+\end{verbatim}
+
+Verifique a versão: \texttt{php -v}.
+
+Para algumas operações com \emph{hash}, é necessário a instalação do
+\texttt{php5-mcrypt}:
+
+\begin{verbatim}
+sudo apt-get install php5-mcrypt
+\end{verbatim}
+
+Para a internacionalização (i18n) do projeto é necessário o pacote
+\texttt{php5-intl}:
+
+\begin{verbatim}
+sudo apt-get install php5-intl
+\end{verbatim}
+
+\section{Servidor}\label{servidor}
+
+Para servir o sistema podemos utilizar
+\href{http://httpd.apache.org/}{Apache2} ou
+\href{http://nginx.org/}{Nginx}, sendo que este último é o mais
+indicado.
+
+\subsection{Instalação Apache2}\label{instalauxe7uxe3o-apache2}
+
+\begin{verbatim}
+sudo apt-get install apache2
+\end{verbatim}
+
+\subsubsection{Configuração Apache2 (2.4 ou
+superior)}\label{configurauxe7uxe3o-apache2-2.4-ou-superior}
+
+Crie o arquivo saa.conf dentro de \texttt{/etc/apache2/sites-available}
+com o seguinte conteúdo:
+
+\begin{verbatim}
+<VirtualHost *:80>
+    ServerName saa.ifce.edu.br
+
+    DocumentRoot /path/to/saa/public
+
+    <Directory /path/to/saa/public/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog /var/log/apache2/error.log
+    CustomLog /var/log/apache2/access.log combined
+</VirtualHost>
+\end{verbatim}
+
+Modifique o caminho do projeto para o local adequado.
+
+Recarregue as configurações com: \texttt{sudo service apache2 reload}.
+
+\subsection{Instalação Nginx}\label{instalauxe7uxe3o-nginx}
+
+\begin{verbatim}
+sudo apt-get install nginx
+\end{verbatim}
+
+\subsubsection{Configuração Nginx}\label{configurauxe7uxe3o-nginx}
+
+\emph{Em desenvolvimento\ldots{}}
+
+\section{Banco de dados}\label{banco-de-dados}
+
+O SAA utiliza \href{http://www.postgresql.org/}{PostgreSQL} como banco
+de dados relacional.
+
+Última versão estável: \texttt{9.4}.
+
+\subsection{Debian}\label{debian}
+
+\url{http://www.postgresql.org/download/linux/debian/}
+
+Crie o arquivo \texttt{/etc/apt/sources.list.d/pgdg.list}, adicione a
+linha para o repositório:
+
+\begin{verbatim}
+deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main
+\end{verbatim}
+
+Importe a chave assinada do repositório, e atualize a lista de pacotes
+
+\begin{verbatim}
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+sudo apt-get update
+apt-get install postgresql-9.4
+\end{verbatim}
+
+\subsection{Ubuntu}\label{ubuntu}
+
+\url{http://www.postgresql.org/download/linux/ubuntu/}
+
+Crie o arquivo \texttt{/etc/apt/sources.list.d/pgdg.list}, adicione a
+linha para o repositório:
+
+\begin{verbatim}
+deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+\end{verbatim}
+
+Importe a chave assinada do repositório, e atualize a lista de pacotes
+
+\begin{verbatim}
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+sudo apt-get update
+apt-get install postgresql-9.4
+\end{verbatim}
+
+\section{Obtendo código-fonte}\label{obtendo-cuxf3digo-fonte}
+
+O projeto está disponível em \url{https://github.com/ifce-gp-20151/saa}.
+
+Para a instalação em ambiente de produção é necessário baixar um
+\emph{release} estável e testado. Os \emph{releases} podem ser baixados
+em \url{https://github.com/ifce-gp-20151/saa/releases}.
+
+\subsection{Instalando dependências}\label{instalando-dependuxeancias}
+
+Das dependências descritas em \texttt{composer.json}, são necessárias
+para a produção:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  zendframework/zendframework
+\item
+  doctrine/doctrine-orm-module
+\item
+  dino/dompdf-module
+\end{itemize}
+
+Envie para o servidor somente o necessário para o funcionamento.
+
+Em \texttt{config/application.config.php} comentar as linhas referentes
+aos \texttt{modules}:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  ZFTool
+\item
+  ZendDeveloperTools
+\end{itemize}
+
+\subsection{Configuração da conexão com banco de
+dados}\label{configurauxe7uxe3o-da-conexuxe3o-com-banco-de-dados}
+
+Em \texttt{config/autoload/global.php}, modificar trecho:
+
+\begin{verbatim}
+'db' => array(
+    'driver' => 'Pdo',
+    'dsn' => 'pgsql:host=localhost;dbname=saa_production',
+),
+\end{verbatim}
+
+Em seguida criar arquivo \texttt{config/autoload/local.php}, colocando
+os dados:
+
+\begin{verbatim}
+'db' => array(
+    'username' => 'postgres',
+    'password' => 'secret',
+),
+\end{verbatim}
+
+\subsection{Script de criação do banco de
+dados}\label{script-de-criauxe7uxe3o-do-banco-de-dados}
+
+Após criar o banco de dados \texttt{saa\_production} é necessário
+executar o script \texttt{docs/db/ddl.sql}, que contém a definição das
+tabelas, relacionamentos, etc.
+
+\subsection{Script de ACL}\label{script-de-acl}
+
+Executar o arquivo \texttt{docs/db/dml.acl.sql} que contém as regras de
+Autorização do sistema.
+
+\subsection{Merge de release anterior}\label{merge-de-release-anterior}
+
+\emph{Em desenvolvimento\ldots{}}
