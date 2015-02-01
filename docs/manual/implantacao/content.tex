@@ -1,0 +1,125 @@
+\section{Introdução}\label{introduuxe7uxe3o}
+
+Este documento visa mostrar como o sistema SAA deve ser instalado e
+configurado para ambiente de produção.
+
+\section{Sistema Operacional}\label{sistema-operacional}
+
+Debian 7 wheezy (\href{http://debian.c3sl.ufpr.br/debian-cd/}{Download})
+ou Ubuntu Server 14.04 LTS
+(\href{http://www.ubuntu.com/download/server}{Download})
+
+\textbf{Obs.}: Todo o restante da documentação é baseada nestes sistema,
+pois ambos utilizam a mesma tecnologia para instalação de pacotes.
+
+\section{Banco de dados}\label{banco-de-dados}
+
+O SAA utiliza \href{http://www.postgresql.org/}{PostgreSQL} como banco
+de dados relacional.
+
+Última versão estável: \texttt{9.4}.
+
+\subsection{Debian}\label{debian}
+
+\url{http://www.postgresql.org/download/linux/debian/}
+
+Crie o arquivo \texttt{/etc/apt/sources.list.d/pgdg.list}, adicione a
+linha para o repositório:
+
+\begin{verbatim}
+deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main
+\end{verbatim}
+
+Importe a chave assinada do repositório, e atualize a lista de pacotes
+
+\begin{verbatim}
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+sudo apt-get update
+apt-get install postgresql-9.4
+\end{verbatim}
+
+\subsection{Ubuntu}\label{ubuntu}
+
+\url{http://www.postgresql.org/download/linux/ubuntu/}
+
+Crie o arquivo \texttt{/etc/apt/sources.list.d/pgdg.list}, adicione a
+linha para o repositório:
+
+\begin{verbatim}
+deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+\end{verbatim}
+
+Importe a chave assinada do repositório, e atualize a lista de pacotes
+
+\begin{verbatim}
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+sudo apt-get update
+apt-get install postgresql-9.4
+\end{verbatim}
+
+\section{Obtendo código-fonte}\label{obtendo-cuxf3digo-fonte}
+
+O projeto está disponível em \url{https://github.com/ifce-gp-20151/saa}.
+
+Para a instalação em ambiente de produção é necessário baixar um
+\emph{release} estável e testado. Os \emph{releases} podem ser baixados
+em \url{https://github.com/ifce-gp-20151/saa/releases}.
+
+\subsection{Instalando dependências}\label{instalando-dependuxeancias}
+
+Das dependências descritas em \texttt{composer.json}, são necessárias:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  zendframework/zendframework
+\item
+  doctrine/doctrine-orm-module
+\item
+  dino/dompdf-module
+\end{itemize}
+
+Subir para o servidor somente o necessário para o funcionamento.
+
+Em \texttt{config/application.config.php} comentar as linhas referentes
+aos \texttt{modules}:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  ZFTool
+\item
+  ZendDeveloperTools
+\end{itemize}
+
+\subsection{Configuração da conexão com banco de
+dados}\label{configurauxe7uxe3o-da-conexuxe3o-com-banco-de-dados}
+
+Em \texttt{config/autoload/global.php}, modificar trecho:
+
+\begin{verbatim}
+'db' => array(
+    'driver' => 'Pdo',
+    'dsn' => 'pgsql:host=localhost;dbname=saa_production',
+),
+\end{verbatim}
+
+Em seguida criar arquivo \texttt{config/autoload/local.php}, colocando
+os dados:
+
+\begin{verbatim}
+'db' => array(
+    'username' => 'postgres',
+    'password' => 'secret',
+),
+\end{verbatim}
+
+\subsection{Scripts de ACL}\label{scripts-de-acl}
+
+\emph{Em desenvolvimento\ldots{}}
+
+\subsection{Merge de release anterior}\label{merge-de-release-anterior}
+
+\emph{Em desenvolvimento\ldots{}}
