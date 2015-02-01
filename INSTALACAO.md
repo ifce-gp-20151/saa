@@ -78,3 +78,12 @@ Ok, you're good to go.
 ## Traps
 
 <http://stackoverflow.com/questions/26377753/zend-authentication-storage-session-session-validation-failed-any-ideas>
+
+## Criação de entidades (Entities) a partir do banco de dados
+
+~~~
+vendor/bin/doctrine-module orm:convert-mapping --filter="Usuario" \
+--from-database annotation --namespace="Application\\Entity\\" module/Application/src
+~~~
+
+onde `Usuario` é o nome da tabela a ser gerada.
