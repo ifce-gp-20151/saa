@@ -23,7 +23,7 @@ class AdapterServiceFactory implements FactoryInterface
             //$moduleConfig = include __DIR__ . '/../../../../../config/' . ucfirst($moduleName) . '/config/module.config.php';
             $moduleConfig = include __DIR__ . '/../../../../../config/autoload/global.php';
             $local = include __DIR__ . '/../../../../../config/autoload/local.php';
-            $moduleConfig['db']['username'] = $local['db']['user'];
+            $moduleConfig['db']['username'] = $local['db']['username'];
             $moduleConfig['db']['password'] = $local['db']['password'];
             if (isset($moduleConfig['db']))
                 $config['db'] = $moduleConfig['db'];
