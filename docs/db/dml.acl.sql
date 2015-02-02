@@ -6,7 +6,6 @@ INSERT INTO acl_roles (id, role, parent) VALUES (1, 'visitante', NULL);
 INSERT INTO acl_roles (id, role, parent) VALUES (2, 'usuario', 1);
 INSERT INTO acl_roles (id, role, parent) VALUES (3, 'admin', 2);
 
-
 INSERT INTO acl_modules(id, module) VALUES (1, 'Application');
 
 

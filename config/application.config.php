@@ -13,6 +13,7 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
+        'OcraServiceManager',
         'Application',
     ),
     'module_listener_options' => array(

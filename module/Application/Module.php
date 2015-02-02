@@ -81,8 +81,15 @@ class Module {
         $moduleName = $routeMatch->getParam('module');
         $controllerName = $routeMatch->getParam('controller');
         $actionName = $routeMatch->getParam('action');
+        
+        $request = $event->getRequest();
+        $uri = $request->getUri()->getPath();
 
         $authService = $di->get('Application\Service\Auth');
+        if ('/ocra_service_manager_yuml' == $uri) {
+            return true;
+        }
+        
         if (!$authService->authorize($moduleName, $controllerName, $actionName)) {
             $auth = new AuthenticationService();
             $redirect = $event->getTarget()->redirect();

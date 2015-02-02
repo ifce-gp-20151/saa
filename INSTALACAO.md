@@ -4,9 +4,7 @@ Enter the project directory: `cd project-name`
 
 Install zend: `php composer.phar install`
 
-Create file `local.php` at `config/autoload`
-
-Put the content:
+Create the file `local.php` at `config/autoload` with the content:
 
 ~~~
 <?php
@@ -19,6 +17,22 @@ return array(
 );
 ~~~
 
+Create the file `ocra-service-manager.local.php` at `config/autoload` with the content:
+
+~~~
+<?php
+
+return array(
+    'ocra_service_manager' => array(
+        // Turn this on to disable dependencies view in Zend Developer Tools
+        'logged_service_manager' => true,
+    ),
+);
+~~~
+
+Copy `./vendor/zendframework/zend-developer-tools/config/zenddevelopertools.local.php.dist`
+to `./config/autoload/zenddevelopertools.local.php`.
+
 Run ACL inserts.
 
 * /docs/db/ddl.acl.sql
@@ -30,7 +44,7 @@ Install intl for i18n: `sudo apt-get install php5-intl`
 
 ### Apache 2 (2.2.22-1ubuntu1.7)
 
-Create file `project-name` at `/etc/apache2/sites-enabled` with the following content:
+Create the file `project-name` at `/etc/apache2/sites-enabled` with the following content:
 
 ~~~
 <VirtualHost *:80>
@@ -48,7 +62,7 @@ Create file `project-name` at `/etc/apache2/sites-enabled` with the following co
 
 ### Apache 2 (2.4.7-1ubuntu4.1)
 
-Create file `project-name.conf` at `/etc/apache2/sites-enabled` with the following content:
+Create the file `project-name.conf` at `/etc/apache2/sites-enabled` with the following content:
 
 ~~~
 <VirtualHost *:80>
@@ -87,3 +101,13 @@ vendor/bin/doctrine-module orm:convert-mapping --filter="Usuario" \
 ~~~
 
 onde `Usuario` é o nome da tabela a ser gerada.
+
+## Criação dos _getters_ e _setters_
+
+~~~
+vendor/bin/doctrine-module orm:generate-entities --filter="Usuario" module/Application/src/
+~~~
+
+## Links úteis
+
+* <http://ocramius.github.io/presentations/doctrine2-zf2-introduction/#/1>
