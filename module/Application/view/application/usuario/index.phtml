@@ -70,13 +70,13 @@
             <tbody>
                 <?php foreach ($list as $item): ?>
                 <tr>
-                    <td><?php echo $item->id ?></td>
-                    <td><?php echo $item->login ?></td>
+                    <td><?php echo $item['id'] ?></td>
+                    <td><?php echo $item['login'] ?></td>
                     <td style="text-align: right;" >
                         <div class="btn-group">
                             <?php if($acoes['editar']):?>
                             <a href="<?php echo $this->url('usuario',
-                                    array('action' => 'editar', 'id' => $item->id)); ?>"
+                                    array('action' => 'editar', 'id' => $item['id'])); ?>"
                                class="btn btn-default" rel="tooltip" title="Editar">
                                 <i class="fa fa-edit"></i>
                             </a>
@@ -84,7 +84,7 @@
 
                             <?php if($acoes['deletar']):?>
                             <a href="<?php echo $this->url('usuario',
-                                    array('action' => 'deletar', 'id' => $item->id)); ?>"
+                                    array('action' => 'deletar', 'id' => $item['id'])); ?>"
                                class="btn btn-danger deletar" rel="tooltip" title="Deletar">
                                 <i class="fa fa-times"></i>
                             </a>

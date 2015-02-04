@@ -16,12 +16,24 @@ class UsuarioController extends ActionController {
 
 	protected $usuarioTable;
 
+	/**
+	 * @var DoctrineORMEntityManager
+	 */
+	protected $em;
+
 	public function getUsuarioTable(){
 		if(!$this->usuarioTable){
 			$sm = $this->getServiceLocator();
 			$this->usuarioTable = $sm->get('Application\Model\UsuarioTable');
 		}
 		return $this->usuarioTable;
+	}
+
+	public function getEntityManager() {
+		if (null === $this->em) {
+			$this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+		}
+		return $this->em;
 	}
 
 	public function indexAction(){
@@ -36,7 +48,8 @@ class UsuarioController extends ActionController {
 		$restricao = $this->params()->fromQuery('restricao', '');
 
 		return new ViewModel(array(
-			'list' => $this->getUsuarioTable()->listarUsuario($offset, $restricao),
+			//'list' => $this->getUsuarioTable()->listarUsuario($offset, $restricao),
+			'list' => $this->getEntityManager()->getRepository('Application\Entity\Usuario')->listar(),
 			'pagina' => $pagina,
 			'restricao' => $restricao,
 			'acoes' => $acoes,
