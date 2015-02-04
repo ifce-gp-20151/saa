@@ -13,8 +13,11 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
-        'OcraServiceManager',
         'Application',
+        'Psicologia',
+        'Pedagogia',
+        'Admin',
+        //'OcraServiceManager',
     ),
     'module_listener_options' => array(
         'config_glob_paths' => array(

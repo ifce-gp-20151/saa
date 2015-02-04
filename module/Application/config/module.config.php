@@ -157,6 +157,7 @@ return array(
         'strategies' => array(
             'ViewJsonStrategy',
         ),
+        'template_map' => include __DIR__  .'/../template_map.php',
     ),
     'doctrine' => array(
         'driver' => array(

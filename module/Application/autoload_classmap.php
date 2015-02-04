@@ -19,6 +19,7 @@ return array(
     'Application\Entity\AclActions'                  => __DIR__ . '/src/Application/Entity/AclActions.php',
     'Application\Entity\AclModules'                  => __DIR__ . '/src/Application/Entity/AclModules.php',
     'Application\Entity\AclResources'                => __DIR__ . '/src/Application/Entity/AclResources.php',
+    'Application\Entity\UsuarioRepository'           => __DIR__ . '/src/Application/Entity/UsuarioRepository.php',
     'Application\Entity\AclRoles'                    => __DIR__ . '/src/Application/Entity/AclRoles.php',
     'Application\View\Helper\FormatarNumero'         => __DIR__ . '/src/Application/View/Helper/FormatarNumero.php',
     'Application\View\Helper\LabelStatus'            => __DIR__ . '/src/Application/View/Helper/LabelStatus.php',
