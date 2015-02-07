@@ -76,13 +76,13 @@ class ProfissaoController extends ActionController {
     public function editarAction() {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            $this->messages()->flashWarning('Profissao não informada.');
+            $this->messages()->flashWarning('Profissão não informada.');
             return $this->redirect()->toRoute('profissao', array('action' => 'criar'));
         }
         
         $obj = $this->getEntityManager()->find('Core\Entity\Profissao', $id);
         if (! $obj) {
-            $this->messages()->flashWarning('Profissao não encontrada.');
+            $this->messages()->flashWarning('Profissão não encontrada.');
             return $this->redirect()->toRoute('profissao', array('action' => 'criar'));
         }
         
@@ -117,5 +117,26 @@ class ProfissaoController extends ActionController {
 		$viewModel->setTemplate('admin/profissao/salvar.phtml');
 
 		return $viewModel;
+    }
+    
+    public function deletarAction() {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        try {
+            $obj = $this->getEntityManager()->find('Core\Entity\Profissao', $id);
+            if ($obj) {
+                $this->getEntityManager()->remove($obj);
+                $this->getEntityManager()->flush();
+                $this->messages()->flashSuccess('Profissão deletada com sucesso.');
+            } else {
+                $this->messages()->flashWarning('Profissão não encontrada.');
+            }
+        } catch (\Exception $e) {
+            if (preg_match('/23503/', $e->getMessage())) {
+                $this->messages()->flashWarning('Profissão é referenciada e não pode ser deletada.');
+            } else {
+                $this->messages()->flashError('Ocorreu um erro ao deletar. Detalhes: ' . $e->getMessage());
+            }
+        }
+        $this->redirect()->toRoute('profissao');
     }
 }

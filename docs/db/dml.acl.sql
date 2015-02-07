@@ -57,6 +57,7 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 16, 5,  6,  1);--admin/profissao/index
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 17, 5,  6,  5);--admin/profissao/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 18, 5,  6,  6);--admin/profissao/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 19, 5,  6,  7);--admin/profissao/deletar
 
 
 --
@@ -90,4 +91,5 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 15, 3, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 16, 3, true);--admin/profissao/index
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 17, 3, true);--admin/profissao/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 18, 3, true);--admin/profissao/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 19, 3, true);--admin/profissao/deletar
 

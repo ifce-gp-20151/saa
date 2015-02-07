@@ -33,7 +33,7 @@ class ProfissaoForm extends Form {
         $e = new Element\Text('id');
         $e->setAttribute('id', 'id');
         $e->setAttribute('class', 'form-control');
-        $e->setLabel('Id:');
+        $e->setLabel('Cód.:');
         $e->setAttribute('readonly', 'readonly');
 
         return $e;
@@ -41,9 +41,10 @@ class ProfissaoForm extends Form {
 
     protected function _descricao() {
         $e = new Element\Text('descricao');
-        $e->setLabel('* Descricao:');
+        $e->setLabel('* Descrição:');
         $e->setAttribute('id', 'descricao');
         $e->setAttribute('class', 'form-control');
+        $e->setAttribute('autofocus', 'autofocus');
 
         return $e;
     }
