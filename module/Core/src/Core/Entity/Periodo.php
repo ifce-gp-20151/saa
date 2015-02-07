@@ -1,16 +1,16 @@
 <?php
 
-namespace Admin\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Profissao
+ * Periodo
  *
- * @ORM\Table(name="profissao")
+ * @ORM\Table(name="saa.periodo")
  * @ORM\Entity
  */
-class Profissao
+class Periodo
 {
     /**
      * @var integer
@@ -18,7 +18,7 @@ class Profissao
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="profissao_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="periodo_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -34,7 +34,7 @@ class Profissao
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -45,7 +45,7 @@ class Profissao
      * Set descricao
      *
      * @param string $descricao
-     * @return Profissao
+     * @return Periodo
      */
     public function setDescricao($descricao)
     {
@@ -57,7 +57,7 @@ class Profissao
     /**
      * Get descricao
      *
-     * @return string
+     * @return string 
      */
     public function getDescricao()
     {

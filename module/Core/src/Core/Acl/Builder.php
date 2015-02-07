@@ -50,8 +50,8 @@ class Builder implements ServiceManagerAwareInterface {
     private function _loadRoles($acl) {
         $adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         $sql = "SELECT r.id, r.role, pr.role as parent_role
-         FROM acl_roles r
-         LEFT JOIN acl_roles pr ON r.parent = pr.id
+         FROM saa.acl_roles r
+         LEFT JOIN saa.acl_roles pr ON r.parent = pr.id
          ORDER BY r.id ASC";
         $st = $adapter->query($sql);
         $rs = $st->execute();
@@ -63,10 +63,10 @@ class Builder implements ServiceManagerAwareInterface {
     private function _loadResources($acl) {
         $adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         $sql = "SELECT module, controller, action
-         FROM acl_resources r
-         INNER JOIN acl_modules m ON r.module_id = m.id
-         INNER JOIN acl_controllers c ON r.controller_id = c.id
-         INNER JOIN acl_actions a ON r.action_id = a.id";
+         FROM saa.acl_resources r
+         INNER JOIN saa.acl_modules m ON r.module_id = m.id
+         INNER JOIN saa.acl_controllers c ON r.controller_id = c.id
+         INNER JOIN saa.acl_actions a ON r.action_id = a.id";
         $st = $adapter->query($sql);
         $rs = $st->execute();
         foreach ($rs as $row) {
@@ -78,12 +78,12 @@ class Builder implements ServiceManagerAwareInterface {
     private function _loadPrivileges($acl) {
         $adapter = $this->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         $sql = "SELECT module, controller, action, role, allow
-         FROM acl_privileges p
-         INNER JOIN acl_resources r ON p.resource_id = r.id
-         INNER JOIN acl_modules m ON r.module_id = m.id
-         INNER JOIN acl_controllers c ON r.controller_id = c.id
-         INNER JOIN acl_actions a ON r.action_id = a.id
-         INNER JOIN acl_roles ro ON p.role_id = ro.id";
+         FROM saa.acl_privileges p
+         INNER JOIN saa.acl_resources r ON p.resource_id = r.id
+         INNER JOIN saa.acl_modules m ON r.module_id = m.id
+         INNER JOIN saa.acl_controllers c ON r.controller_id = c.id
+         INNER JOIN saa.acl_actions a ON r.action_id = a.id
+         INNER JOIN saa.acl_roles ro ON p.role_id = ro.id";
         $st = $adapter->query($sql);
         $rs = $st->execute();
         foreach ($rs as $row) {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AclRoles
  *
- * @ORM\Table(name="acl_roles", uniqueConstraints={@ORM\UniqueConstraint(name="acl_roles_role_key", columns={"role"})}, indexes={@ORM\Index(name="IDX_32A763783D8E604F", columns={"parent"})})
+ * @ORM\Table(name="saa.acl_roles", uniqueConstraints={@ORM\UniqueConstraint(name="acl_roles_role_key", columns={"role"})}, indexes={@ORM\Index(name="IDX_32A763783D8E604F", columns={"parent"})})
  * @ORM\Entity
  */
 class AclRoles
@@ -30,9 +30,9 @@ class AclRoles
     private $role;
 
     /**
-     * @var \Application\Entity\AclRoles
+     * @var \Core\Entity\AclRoles
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\AclRoles")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\AclRoles")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="parent", referencedColumnName="id")
      * })
@@ -42,7 +42,7 @@ class AclRoles
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\AclResources", mappedBy="role")
+     * @ORM\ManyToMany(targetEntity="Core\Entity\AclResources", mappedBy="role")
      */
     private $resource;
 
@@ -91,10 +91,10 @@ class AclRoles
     /**
      * Set parent
      *
-     * @param \Application\Entity\AclRoles $parent
+     * @param \Core\Entity\AclRoles $parent
      * @return AclRoles
      */
-    public function setParent(\Application\Entity\AclRoles $parent = null)
+    public function setParent(\Core\Entity\AclRoles $parent = null)
     {
         $this->parent = $parent;
 
@@ -104,7 +104,7 @@ class AclRoles
     /**
      * Get parent
      *
-     * @return \Application\Entity\AclRoles 
+     * @return \Core\Entity\AclRoles 
      */
     public function getParent()
     {
@@ -114,10 +114,10 @@ class AclRoles
     /**
      * Add resource
      *
-     * @param \Application\Entity\AclResources $resource
+     * @param \Core\Entity\AclResources $resource
      * @return AclRoles
      */
-    public function addResource(\Application\Entity\AclResources $resource)
+    public function addResource(\Core\Entity\AclResources $resource)
     {
         $this->resource[] = $resource;
 
@@ -127,9 +127,9 @@ class AclRoles
     /**
      * Remove resource
      *
-     * @param \Application\Entity\AclResources $resource
+     * @param \Core\Entity\AclResources $resource
      */
-    public function removeResource(\Application\Entity\AclResources $resource)
+    public function removeResource(\Core\Entity\AclResources $resource)
     {
         $this->resource->removeElement($resource);
     }

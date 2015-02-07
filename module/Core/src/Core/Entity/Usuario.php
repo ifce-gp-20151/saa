@@ -1,27 +1,17 @@
 <?php
 
-namespace Application\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", indexes={@ORM\Index(name="IDX_2265B05DD60322AC", columns={"role_id"})})
- * @ORM\Entity(repositoryClass="UsuarioRepository")
+ * @ORM\Table(name="saa.usuario", indexes={@ORM\Index(name="IDX_2A8F60F0D60322AC", columns={"role_id"})})
+ * @ORM\Entity(repositoryClass="Core\Repository\UsuarioRepository")
  */
 class Usuario
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="usuario_id_seq", allocationSize=1, initialValue=1)
-     */
-    private $id;
-
     /**
      * @var string
      *
@@ -37,9 +27,22 @@ class Usuario
     private $senha;
 
     /**
-     * @var \Application\Entity\AclRoles
+     * @var \Core\Entity\Servidor
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\AclRoles")
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Core\Entity\Servidor")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * })
+     */
+    private $id;
+
+    /**
+     * @var \Core\Entity\AclRoles
+     *
+     * @ORM\ManyToOne(targetEntity="Core\Entity\AclRoles")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      * })
@@ -47,16 +50,6 @@ class Usuario
     private $role;
 
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set login
@@ -105,12 +98,35 @@ class Usuario
     }
 
     /**
-     * Set role
+     * Set id
      *
-     * @param \Application\Entity\AclRoles $role
+     * @param \Core\Entity\Servidor $id
      * @return Usuario
      */
-    public function setRole(\Application\Entity\AclRoles $role = null)
+    public function setId(\Core\Entity\Servidor $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return \Core\Entity\Servidor
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set role
+     *
+     * @param \Core\Entity\AclRoles $role
+     * @return Usuario
+     */
+    public function setRole(\Core\Entity\AclRoles $role = null)
     {
         $this->role = $role;
 
@@ -120,7 +136,7 @@ class Usuario
     /**
      * Get role
      *
-     * @return \Application\Entity\AclRoles
+     * @return \Core\Entity\AclRoles
      */
     public function getRole()
     {

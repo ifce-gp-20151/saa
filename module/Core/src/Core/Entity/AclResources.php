@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AclResources
  *
- * @ORM\Table(name="acl_resources", uniqueConstraints={@ORM\UniqueConstraint(name="acl_resources_module_id_controller_id_action_id_key", columns={"module_id", "controller_id", "action_id"})}, indexes={@ORM\Index(name="IDX_9863DD9B9D32F035", columns={"action_id"}), @ORM\Index(name="IDX_9863DD9BF6D1A74B", columns={"controller_id"}), @ORM\Index(name="IDX_9863DD9BAFC2B591", columns={"module_id"})})
+ * @ORM\Table(name="saa.acl_resources", uniqueConstraints={@ORM\UniqueConstraint(name="acl_resources_module_id_controller_id_action_id_key", columns={"module_id", "controller_id", "action_id"})}, indexes={@ORM\Index(name="IDX_9863DD9B9D32F035", columns={"action_id"}), @ORM\Index(name="IDX_9863DD9BF6D1A74B", columns={"controller_id"}), @ORM\Index(name="IDX_9863DD9BAFC2B591", columns={"module_id"})})
  * @ORM\Entity
  */
 class AclResources
@@ -23,9 +23,9 @@ class AclResources
     private $id;
 
     /**
-     * @var \Application\Entity\AclActions
+     * @var \Core\Entity\AclActions
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\AclActions")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\AclActions")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="action_id", referencedColumnName="id")
      * })
@@ -33,9 +33,9 @@ class AclResources
     private $action;
 
     /**
-     * @var \Application\Entity\AclControllers
+     * @var \Core\Entity\AclControllers
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\AclControllers")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\AclControllers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="controller_id", referencedColumnName="id")
      * })
@@ -43,9 +43,9 @@ class AclResources
     private $controller;
 
     /**
-     * @var \Application\Entity\AclModules
+     * @var \Core\Entity\AclModules
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\AclModules")
+     * @ORM\ManyToOne(targetEntity="Core\Entity\AclModules")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
      * })
@@ -55,8 +55,8 @@ class AclResources
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\AclRoles", inversedBy="resource")
-     * @ORM\JoinTable(name="acl_privileges",
+     * @ORM\ManyToMany(targetEntity="Core\Entity\AclRoles", inversedBy="resource")
+     * @ORM\JoinTable(name="saa.acl_privileges",
      *   joinColumns={
      *     @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      *   },
@@ -89,10 +89,10 @@ class AclResources
     /**
      * Set action
      *
-     * @param \Application\Entity\AclActions $action
+     * @param \Core\Entity\AclActions $action
      * @return AclResources
      */
-    public function setAction(\Application\Entity\AclActions $action = null)
+    public function setAction(\Core\Entity\AclActions $action = null)
     {
         $this->action = $action;
 
@@ -102,7 +102,7 @@ class AclResources
     /**
      * Get action
      *
-     * @return \Application\Entity\AclActions 
+     * @return \Core\Entity\AclActions 
      */
     public function getAction()
     {
@@ -112,10 +112,10 @@ class AclResources
     /**
      * Set controller
      *
-     * @param \Application\Entity\AclControllers $controller
+     * @param \Core\Entity\AclControllers $controller
      * @return AclResources
      */
-    public function setController(\Application\Entity\AclControllers $controller = null)
+    public function setController(\Core\Entity\AclControllers $controller = null)
     {
         $this->controller = $controller;
 
@@ -125,7 +125,7 @@ class AclResources
     /**
      * Get controller
      *
-     * @return \Application\Entity\AclControllers 
+     * @return \Core\Entity\AclControllers 
      */
     public function getController()
     {
@@ -135,10 +135,10 @@ class AclResources
     /**
      * Set module
      *
-     * @param \Application\Entity\AclModules $module
+     * @param \Core\Entity\AclModules $module
      * @return AclResources
      */
-    public function setModule(\Application\Entity\AclModules $module = null)
+    public function setModule(\Core\Entity\AclModules $module = null)
     {
         $this->module = $module;
 
@@ -148,7 +148,7 @@ class AclResources
     /**
      * Get module
      *
-     * @return \Application\Entity\AclModules 
+     * @return \Core\Entity\AclModules 
      */
     public function getModule()
     {
@@ -158,10 +158,10 @@ class AclResources
     /**
      * Add role
      *
-     * @param \Application\Entity\AclRoles $role
+     * @param \Core\Entity\AclRoles $role
      * @return AclResources
      */
-    public function addRole(\Application\Entity\AclRoles $role)
+    public function addRole(\Core\Entity\AclRoles $role)
     {
         $this->role[] = $role;
 
@@ -171,9 +171,9 @@ class AclResources
     /**
      * Remove role
      *
-     * @param \Application\Entity\AclRoles $role
+     * @param \Core\Entity\AclRoles $role
      */
-    public function removeRole(\Application\Entity\AclRoles $role)
+    public function removeRole(\Core\Entity\AclRoles $role)
     {
         $this->role->removeElement($role);
     }

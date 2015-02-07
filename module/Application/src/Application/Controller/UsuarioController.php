@@ -21,7 +21,7 @@ class UsuarioController extends ActionController {
 	 */
 	protected $em;
 
-	public function getUsuarioTable(){
+	public function getUsuarioTable() {
 		if(!$this->usuarioTable){
 			$sm = $this->getServiceLocator();
 			$this->usuarioTable = $sm->get('Application\Model\UsuarioTable');
@@ -36,7 +36,7 @@ class UsuarioController extends ActionController {
 		return $this->em;
 	}
 
-	public function indexAction(){
+	public function indexAction() {
 		$acoes['criar'] = $this->temPermissao("criar");
 		$acoes['editar'] = $this->temPermissao("editar");
 		$acoes['deletar'] = $this->temPermissao("deletar");
@@ -49,14 +49,14 @@ class UsuarioController extends ActionController {
 
 		return new ViewModel(array(
 			//'list' => $this->getUsuarioTable()->listarUsuario($offset, $restricao),
-			'list' => $this->getEntityManager()->getRepository('Application\Entity\Usuario')->listar(),
+			'list' => $this->getEntityManager()->getRepository('Core\Entity\Usuario')->listar(),
 			'pagina' => $pagina,
 			'restricao' => $restricao,
 			'acoes' => $acoes,
 		));
 	}
 
-	public function criarAction(){
+	public function criarAction() {
 
 		$sm = $this->getServiceLocator();
 		$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
@@ -97,7 +97,7 @@ class UsuarioController extends ActionController {
 
 		return $viewModel;
 	}
-	public function editarAction(){
+	public function editarAction() {
 		$id = $this->params()->fromRoute('id',0);
 		if(!$id){
 			return $this->redirect()->toRoute('usuario', array('action' => 'criar'));
@@ -149,7 +149,7 @@ class UsuarioController extends ActionController {
 		return $viewModel;
 	}
 
-	public function editarSenhaAction(){
+	public function editarSenhaAction() {
 		$session = $this->getServiceLocator()->get('Session');
 		$user = $session->offsetGet('user');
 
@@ -214,7 +214,7 @@ class UsuarioController extends ActionController {
 		return $viewModel;
 	}
 
-	public function deletarAction(){
+	public function deletarAction() {
 		$id = (int) $this->params()->fromRoute("id", 0);
 		try {
 			$this->getUsuarioTable()->deletarUsuario($id);

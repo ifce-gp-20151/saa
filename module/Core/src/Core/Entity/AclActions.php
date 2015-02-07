@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AclActions
  *
- * @ORM\Table(name="acl_actions", uniqueConstraints={@ORM\UniqueConstraint(name="acl_actions_action_key", columns={"action"})})
+ * @ORM\Table(name="saa.acl_actions", uniqueConstraints={@ORM\UniqueConstraint(name="acl_actions_action_key", columns={"action"})})
  * @ORM\Entity
  */
 class AclActions
@@ -34,7 +34,7 @@ class AclActions
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +57,7 @@ class AclActions
     /**
      * Get action
      *
-     * @return string 
+     * @return string
      */
     public function getAction()
     {

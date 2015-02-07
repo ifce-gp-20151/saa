@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\Entity;
+namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AclModules
  *
- * @ORM\Table(name="acl_modules", uniqueConstraints={@ORM\UniqueConstraint(name="acl_modules_module_key", columns={"module"})})
+ * @ORM\Table(name="saa.acl_modules", uniqueConstraints={@ORM\UniqueConstraint(name="acl_modules_module_key", columns={"module"})})
  * @ORM\Entity
  */
 class AclModules

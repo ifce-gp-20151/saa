@@ -5,6 +5,7 @@ namespace Application\Service;
 use Core\Service\Service;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Adapter\DbTable as AuthAdapter;
+use Zend\Db\Sql\TableIdentifier;
 
 /**
  * Serviço responsável pela autenticação da aplicação
@@ -48,13 +49,13 @@ class Auth extends Service {
         $password = hash('sha256', $params['password']);
         $auth = new AuthenticationService();
         $authAdapter = new AuthAdapter($this->dbAdapter);
-        $authAdapter->setTableName('usuario')
+        $authAdapter->setTableName(new TableIdentifier('usuario', 'saa'))
                 ->setIdentityColumn('login')
                 ->setCredentialColumn('senha')
                 ->setIdentity($params['username'])
                 ->setCredential($password);
         $select = $authAdapter->getDbSelect();
-        $select->join(array('ro' => 'acl_roles'), 'usuario.role_id = ro.id', array('nome_grupo' => 'role'));
+        $select->join(array('ro' => new TableIdentifier('acl_roles', 'saa')), 'usuario.role_id = ro.id', array('nome_grupo' => 'role'));
 
 
         $result = $auth->authenticate($authAdapter);
