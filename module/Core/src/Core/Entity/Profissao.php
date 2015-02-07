@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="saa.profissao")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Profissao
 {
@@ -18,7 +19,7 @@ class Profissao
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="profissao_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="saa.profissao_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -28,22 +29,6 @@ class Profissao
      * @ORM\Column(name="descricao", type="string", length=50, nullable=false)
      */
     private $descricao;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Core\Entity\Pessoa", mappedBy="idProfissao")
-     */
-    private $idPessoa;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idPessoa = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
 
     /**
      * Get id
@@ -77,37 +62,21 @@ class Profissao
     {
         return $this->descricao;
     }
-
+    
     /**
-     * Add idPessoa
-     *
-     * @param \Core\Entity\Pessoa $idPessoa
-     * @return Profissao
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
-    public function addIdPessoa(\Core\Entity\Pessoa $idPessoa)
-    {
-        $this->idPessoa[] = $idPessoa;
-
-        return $this;
+    public function upcase() {
+        $this->descricao = mb_strtoupper($this->descricao, 'UTF-8');
+    }
+    
+    public function exchangeArray($data) {
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+        $this->descricao = (!empty($data['descricao'])) ? $data['descricao'] : null;
     }
 
-    /**
-     * Remove idPessoa
-     *
-     * @param \Core\Entity\Pessoa $idPessoa
-     */
-    public function removeIdPessoa(\Core\Entity\Pessoa $idPessoa)
-    {
-        $this->idPessoa->removeElement($idPessoa);
-    }
-
-    /**
-     * Get idPessoa
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIdPessoa()
-    {
-        return $this->idPessoa;
+    public function getArrayCopy() {
+        return get_object_vars($this);
     }
 }
