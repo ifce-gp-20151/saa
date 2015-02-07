@@ -37,6 +37,17 @@
             </div>
         </form>
     </div>
+    <div class="col-md-6">
+        <?php
+            $count = count($list);
+            echo $this->partial('partials/paginacao/paginacao', array(
+                'pagina' => (int) $this->pagina,
+                'route' => 'profissao',
+                'count' => $count,
+                'restricao' => $this->restricao
+            ));
+        ?>
+    </div>
 </div>
 
 <hr>
@@ -77,5 +88,18 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-6">
+        <?php
+            echo $this->partial('partials/paginacao/paginacao', array(
+                'pagina' => (int) $this->pagina,
+                'route' => 'usuario',
+                'count' => $count,
+                'restricao' => $this->restricao
+            ));
+        ?>
     </div>
 </div>
