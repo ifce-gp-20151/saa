@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Aluno
  *
  * @ORM\Table(name="saa.aluno", indexes={@ORM\Index(name="IDX_67C971003AE81E6F", columns={"id_pessoa"}), @ORM\Index(name="IDX_67C9710024BE01DC", columns={"id_curso"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\AlunoRepository")
  */
 class Aluno
 {

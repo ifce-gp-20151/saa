@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controller;
+namespace Psicologia\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;

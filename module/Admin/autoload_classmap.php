@@ -3,5 +3,7 @@
 return array(
     'Admin\Controller\IndexController'     => __DIR__ . '/src/Admin/Controller/IndexController.php',
     'Admin\Controller\ProfissaoController' => __DIR__ . '/src/Admin/Controller/ProfissaoController.php',
+    'Admin\Form\ProfissaoForm'             => __DIR__ . '/src/Admin/Form/ProfissaoForm.php',
+    'Admin\Form\ProfissaoFilter'           => __DIR__ . '/src/Admin/Form/ProfissaoFilter.php',
     'Admin\Module'                         => __DIR__ . '/Module.php',
 );

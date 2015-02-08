@@ -18,7 +18,7 @@ class Acompanhamento
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="acompanhamento_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="saa.acompanhamento_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -213,5 +213,17 @@ class Acompanhamento
     public function getIdAgenda()
     {
         return $this->idAgenda;
+    }
+    
+    public function exchangeArray($data) {
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+        $this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
+        $this->motivo = (!empty($data['motivo'])) ? $data['motivo'] : null;
+        $this->encaminhado = (!empty($data['encaminhado'])) ? $data['encaminhado'] : null;
+        $this->id_servidor = (!empty($data['id_servidor'])) ? $data['id_servidor'] : null;
+    }
+
+    public function getArrayCopy() {
+        return get_object_vars($this);
     }
 }

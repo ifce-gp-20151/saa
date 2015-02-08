@@ -51,13 +51,6 @@ class Pessoa
     private $sexo;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_atividade_remunerada", type="bigint", nullable=false)
-     */
-    private $idAtividadeRemunerada;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dt_nascimento", type="date", nullable=false)
@@ -246,29 +239,6 @@ class Pessoa
     public function getSexo()
     {
         return $this->sexo;
-    }
-
-    /**
-     * Set idAtividadeRemunerada
-     *
-     * @param integer $idAtividadeRemunerada
-     * @return Pessoa
-     */
-    public function setIdAtividadeRemunerada($idAtividadeRemunerada)
-    {
-        $this->idAtividadeRemunerada = $idAtividadeRemunerada;
-
-        return $this;
-    }
-
-    /**
-     * Get idAtividadeRemunerada
-     *
-     * @return integer 
-     */
-    public function getIdAtividadeRemunerada()
-    {
-        return $this->idAtividadeRemunerada;
     }
 
     /**

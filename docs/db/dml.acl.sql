@@ -22,6 +22,7 @@ INSERT INTO saa.acl_controllers(id, controller) VALUES ( 3, 'Usuario');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 4, 'Module');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 5, 'Create');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 6, 'Profissao');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 7, 'Acompanhamento');
 
 
 INSERT INTO saa.acl_actions(id, action) VALUES (  1, 'index');
@@ -37,6 +38,7 @@ INSERT INTO saa.acl_actions(id, action) VALUES ( 10, 'permissao-negada');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 11, 'list');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 12, 'module');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 13, 'controller');
+INSERT INTO saa.acl_actions(id, action) VALUES ( 14, 'ajax-buscar-aluno');
 
 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES (  1, 1,  1,  1);--index/index
@@ -58,6 +60,10 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 17, 5,  6,  5);--admin/profissao/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 18, 5,  6,  6);--admin/profissao/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 19, 5,  6,  7);--admin/profissao/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 20, 3,  1,  1);--psicologia/index/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 21, 3,  7,  1);--psicologia/acompanhamento/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 22, 3,  7,  5);--psicologia/acompanhamento/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 23, 3,  7, 14);--psicologia/acompanhamento/ajax-buscar-aluno
 
 
 --
@@ -92,4 +98,13 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 16, 3, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 17, 3, true);--admin/profissao/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 18, 3, true);--admin/profissao/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 19, 3, true);--admin/profissao/deletar
+
+
+--
+-- psicologo
+--
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 20, 4, true);--psicologia/index/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 21, 4, true);--psicologia/acompanhamento/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 22, 4, true);--psicologia/acompanhamento/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 23, 4, true);--psicologia/acompanhamento/ajax-buscar-aluno
 
