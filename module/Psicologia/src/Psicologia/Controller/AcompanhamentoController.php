@@ -110,4 +110,21 @@ class AcompanhamentoController extends AbstractActionController {
 
         return new JsonModel($params);
     }
+
+    public function detalhesAction() {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            $this->messages()->flashWarning('Acompanhamento não informado.');
+            return $this->redirect()->toRoute('acompanhamento');
+        }
+
+        $obj = $this->getEntityManager()
+            ->getRepository('Core\Entity\Acompanhamento')
+            ->buscarPor($id);
+
+        return new ViewModel(array(
+            'obj' => $obj,
+            'id' => $id,
+        ));
+    }
 }
