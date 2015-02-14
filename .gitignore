@@ -13,3 +13,4 @@ vendor/bin
 *~
 node_modules/
 *.mo
+docs/**/*.log

@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.4
 -- Dumped by pg_dump version 9.3.4
--- Started on 2015-02-08 00:28:47 BRT
+-- Started on 2015-02-13 21:49:19 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -118,7 +118,8 @@ CREATE TABLE acompanhamento (
     matricula bigint,
     motivo text NOT NULL,
     encaminhado character varying(255),
-    id_servidor bigint
+    id_servidor bigint,
+    data_criacao timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -212,7 +213,7 @@ CREATE SEQUENCE bairro_id_seq
 
 
 --
--- TOC entry 2256 (class 0 OID 0)
+-- TOC entry 2257 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: bairro_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -245,7 +246,7 @@ CREATE SEQUENCE cargo_id_seq
 
 
 --
--- TOC entry 2257 (class 0 OID 0)
+-- TOC entry 2258 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: cargo_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -279,7 +280,7 @@ CREATE SEQUENCE cidade_id_seq
 
 
 --
--- TOC entry 2258 (class 0 OID 0)
+-- TOC entry 2259 (class 0 OID 0)
 -- Dependencies: 172
 -- Name: cidade_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -313,7 +314,7 @@ CREATE SEQUENCE contato_id_seq
 
 
 --
--- TOC entry 2259 (class 0 OID 0)
+-- TOC entry 2260 (class 0 OID 0)
 -- Dependencies: 192
 -- Name: contato_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -347,7 +348,7 @@ CREATE SEQUENCE curso_id_seq
 
 
 --
--- TOC entry 2260 (class 0 OID 0)
+-- TOC entry 2261 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: curso_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -395,7 +396,7 @@ CREATE SEQUENCE dados_familiares_id_seq
 
 
 --
--- TOC entry 2261 (class 0 OID 0)
+-- TOC entry 2262 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: dados_familiares_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -432,7 +433,7 @@ CREATE SEQUENCE endereco_id_seq
 
 
 --
--- TOC entry 2262 (class 0 OID 0)
+-- TOC entry 2263 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: endereco_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -465,7 +466,7 @@ CREATE SEQUENCE estado_civil_id_seq
 
 
 --
--- TOC entry 2263 (class 0 OID 0)
+-- TOC entry 2264 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: estado_civil_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -498,7 +499,7 @@ CREATE SEQUENCE grau_parentesco_id_seq
 
 
 --
--- TOC entry 2264 (class 0 OID 0)
+-- TOC entry 2265 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: grau_parentesco_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -531,7 +532,7 @@ CREATE SEQUENCE periodo_id_seq
 
 
 --
--- TOC entry 2265 (class 0 OID 0)
+-- TOC entry 2266 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: periodo_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -602,7 +603,7 @@ CREATE SEQUENCE pessoa_id_seq
 
 
 --
--- TOC entry 2266 (class 0 OID 0)
+-- TOC entry 2267 (class 0 OID 0)
 -- Dependencies: 179
 -- Name: pessoa_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -635,7 +636,7 @@ CREATE SEQUENCE profissao_id_seq
 
 
 --
--- TOC entry 2267 (class 0 OID 0)
+-- TOC entry 2268 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: profissao_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -680,7 +681,7 @@ CREATE SEQUENCE tipo_contato_id_seq
 
 
 --
--- TOC entry 2268 (class 0 OID 0)
+-- TOC entry 2269 (class 0 OID 0)
 -- Dependencies: 194
 -- Name: tipo_contato_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
@@ -818,7 +819,7 @@ ALTER TABLE ONLY tipo_contato ALTER COLUMN id SET DEFAULT nextval('tipo_contato_
 
 
 --
--- TOC entry 2096 (class 2606 OID 26860)
+-- TOC entry 2097 (class 2606 OID 26860)
 -- Name: acl_actions_action_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -827,7 +828,7 @@ ALTER TABLE ONLY acl_actions
 
 
 --
--- TOC entry 2098 (class 2606 OID 26858)
+-- TOC entry 2099 (class 2606 OID 26858)
 -- Name: acl_actions_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -836,7 +837,7 @@ ALTER TABLE ONLY acl_actions
 
 
 --
--- TOC entry 2092 (class 2606 OID 26853)
+-- TOC entry 2093 (class 2606 OID 26853)
 -- Name: acl_controllers_controller_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -845,7 +846,7 @@ ALTER TABLE ONLY acl_controllers
 
 
 --
--- TOC entry 2094 (class 2606 OID 26851)
+-- TOC entry 2095 (class 2606 OID 26851)
 -- Name: acl_controllers_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -854,7 +855,7 @@ ALTER TABLE ONLY acl_controllers
 
 
 --
--- TOC entry 2088 (class 2606 OID 26846)
+-- TOC entry 2089 (class 2606 OID 26846)
 -- Name: acl_modules_module_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -863,7 +864,7 @@ ALTER TABLE ONLY acl_modules
 
 
 --
--- TOC entry 2090 (class 2606 OID 26844)
+-- TOC entry 2091 (class 2606 OID 26844)
 -- Name: acl_modules_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -872,7 +873,7 @@ ALTER TABLE ONLY acl_modules
 
 
 --
--- TOC entry 2108 (class 2606 OID 26900)
+-- TOC entry 2109 (class 2606 OID 26900)
 -- Name: acl_privileges_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -881,7 +882,7 @@ ALTER TABLE ONLY acl_privileges
 
 
 --
--- TOC entry 2104 (class 2606 OID 26879)
+-- TOC entry 2105 (class 2606 OID 26879)
 -- Name: acl_resources_module_id_controller_id_action_id_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -890,7 +891,7 @@ ALTER TABLE ONLY acl_resources
 
 
 --
--- TOC entry 2106 (class 2606 OID 26877)
+-- TOC entry 2107 (class 2606 OID 26877)
 -- Name: acl_resources_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -899,7 +900,7 @@ ALTER TABLE ONLY acl_resources
 
 
 --
--- TOC entry 2100 (class 2606 OID 26865)
+-- TOC entry 2101 (class 2606 OID 26865)
 -- Name: acl_roles_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -908,7 +909,7 @@ ALTER TABLE ONLY acl_roles
 
 
 --
--- TOC entry 2102 (class 2606 OID 26867)
+-- TOC entry 2103 (class 2606 OID 26867)
 -- Name: acl_roles_role_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -917,7 +918,7 @@ ALTER TABLE ONLY acl_roles
 
 
 --
--- TOC entry 2082 (class 2606 OID 26698)
+-- TOC entry 2083 (class 2606 OID 26698)
 -- Name: acompanhamento_individual_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -926,7 +927,7 @@ ALTER TABLE ONLY acompanhamento_individual
 
 
 --
--- TOC entry 2080 (class 2606 OID 26690)
+-- TOC entry 2081 (class 2606 OID 26690)
 -- Name: acompanhamento_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -935,7 +936,7 @@ ALTER TABLE ONLY acompanhamento
 
 
 --
--- TOC entry 2084 (class 2606 OID 26703)
+-- TOC entry 2085 (class 2606 OID 26703)
 -- Name: agenda_acompanhamento_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -944,7 +945,7 @@ ALTER TABLE ONLY agenda_acompanhamento
 
 
 --
--- TOC entry 2086 (class 2606 OID 26708)
+-- TOC entry 2087 (class 2606 OID 26708)
 -- Name: agenda_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -953,7 +954,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- TOC entry 2070 (class 2606 OID 26648)
+-- TOC entry 2071 (class 2606 OID 26648)
 -- Name: aluno_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -962,7 +963,7 @@ ALTER TABLE ONLY aluno
 
 
 --
--- TOC entry 2050 (class 2606 OID 26582)
+-- TOC entry 2051 (class 2606 OID 26582)
 -- Name: atividade_remunerada_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -971,7 +972,7 @@ ALTER TABLE ONLY atividade_remunerada
 
 
 --
--- TOC entry 2038 (class 2606 OID 26543)
+-- TOC entry 2039 (class 2606 OID 26543)
 -- Name: bairro_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -980,7 +981,7 @@ ALTER TABLE ONLY bairro
 
 
 --
--- TOC entry 2078 (class 2606 OID 26682)
+-- TOC entry 2079 (class 2606 OID 26682)
 -- Name: cargo_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -989,7 +990,7 @@ ALTER TABLE ONLY cargo
 
 
 --
--- TOC entry 2036 (class 2606 OID 26535)
+-- TOC entry 2037 (class 2606 OID 26535)
 -- Name: cidade_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -998,7 +999,7 @@ ALTER TABLE ONLY cidade
 
 
 --
--- TOC entry 2064 (class 2606 OID 26624)
+-- TOC entry 2065 (class 2606 OID 26624)
 -- Name: contato_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1007,7 +1008,7 @@ ALTER TABLE ONLY contato
 
 
 --
--- TOC entry 2072 (class 2606 OID 26656)
+-- TOC entry 2073 (class 2606 OID 26656)
 -- Name: curso_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1016,7 +1017,7 @@ ALTER TABLE ONLY curso
 
 
 --
--- TOC entry 2068 (class 2606 OID 26637)
+-- TOC entry 2069 (class 2606 OID 26637)
 -- Name: dados_familiares_contato_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1025,7 +1026,7 @@ ALTER TABLE ONLY dados_familiares_contato
 
 
 --
--- TOC entry 2058 (class 2606 OID 26603)
+-- TOC entry 2059 (class 2606 OID 26603)
 -- Name: dados_familiares_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1034,7 +1035,7 @@ ALTER TABLE ONLY dados_familiares
 
 
 --
--- TOC entry 2040 (class 2606 OID 26554)
+-- TOC entry 2041 (class 2606 OID 26554)
 -- Name: endereco_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1043,7 +1044,7 @@ ALTER TABLE ONLY endereco
 
 
 --
--- TOC entry 2048 (class 2606 OID 26577)
+-- TOC entry 2049 (class 2606 OID 26577)
 -- Name: estado_civil_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1052,7 +1053,7 @@ ALTER TABLE ONLY estado_civil
 
 
 --
--- TOC entry 2060 (class 2606 OID 26611)
+-- TOC entry 2061 (class 2606 OID 26611)
 -- Name: grau_parentesco_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1061,7 +1062,7 @@ ALTER TABLE ONLY grau_parentesco
 
 
 --
--- TOC entry 2074 (class 2606 OID 26664)
+-- TOC entry 2075 (class 2606 OID 26664)
 -- Name: periodo_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1070,7 +1071,7 @@ ALTER TABLE ONLY periodo
 
 
 --
--- TOC entry 2062 (class 2606 OID 26616)
+-- TOC entry 2063 (class 2606 OID 26616)
 -- Name: pessoa_contato_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1079,7 +1080,7 @@ ALTER TABLE ONLY pessoa_contato
 
 
 --
--- TOC entry 2044 (class 2606 OID 26569)
+-- TOC entry 2045 (class 2606 OID 26569)
 -- Name: pessoa_cpf_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1088,7 +1089,7 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 2042 (class 2606 OID 26559)
+-- TOC entry 2043 (class 2606 OID 26559)
 -- Name: pessoa_endereco_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1097,7 +1098,7 @@ ALTER TABLE ONLY pessoa_endereco
 
 
 --
--- TOC entry 2056 (class 2606 OID 26595)
+-- TOC entry 2057 (class 2606 OID 26595)
 -- Name: pessoa_familiares_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1106,7 +1107,7 @@ ALTER TABLE ONLY pessoa_familiares
 
 
 --
--- TOC entry 2046 (class 2606 OID 26567)
+-- TOC entry 2047 (class 2606 OID 26567)
 -- Name: pessoa_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1115,7 +1116,7 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 2052 (class 2606 OID 26928)
+-- TOC entry 2053 (class 2606 OID 26928)
 -- Name: profissao_descricao_key; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1124,7 +1125,7 @@ ALTER TABLE ONLY profissao
 
 
 --
--- TOC entry 2054 (class 2606 OID 26590)
+-- TOC entry 2055 (class 2606 OID 26590)
 -- Name: profissao_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1133,7 +1134,7 @@ ALTER TABLE ONLY profissao
 
 
 --
--- TOC entry 2076 (class 2606 OID 26669)
+-- TOC entry 2077 (class 2606 OID 26669)
 -- Name: servidor_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1142,7 +1143,7 @@ ALTER TABLE ONLY servidor
 
 
 --
--- TOC entry 2066 (class 2606 OID 26632)
+-- TOC entry 2067 (class 2606 OID 26632)
 -- Name: tipo_contato_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1151,7 +1152,7 @@ ALTER TABLE ONLY tipo_contato
 
 
 --
--- TOC entry 2034 (class 2606 OID 26527)
+-- TOC entry 2035 (class 2606 OID 26527)
 -- Name: uf_pkey; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1160,7 +1161,7 @@ ALTER TABLE ONLY uf
 
 
 --
--- TOC entry 2110 (class 2606 OID 26915)
+-- TOC entry 2111 (class 2606 OID 26915)
 -- Name: usuario_pk; Type: CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1169,7 +1170,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- TOC entry 2141 (class 2606 OID 26901)
+-- TOC entry 2142 (class 2606 OID 26901)
 -- Name: acl_privileges_resource_id_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1178,7 +1179,7 @@ ALTER TABLE ONLY acl_privileges
 
 
 --
--- TOC entry 2142 (class 2606 OID 26906)
+-- TOC entry 2143 (class 2606 OID 26906)
 -- Name: acl_privileges_role_id_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1187,7 +1188,7 @@ ALTER TABLE ONLY acl_privileges
 
 
 --
--- TOC entry 2138 (class 2606 OID 26880)
+-- TOC entry 2139 (class 2606 OID 26880)
 -- Name: acl_resources_action_id_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1196,7 +1197,7 @@ ALTER TABLE ONLY acl_resources
 
 
 --
--- TOC entry 2139 (class 2606 OID 26885)
+-- TOC entry 2140 (class 2606 OID 26885)
 -- Name: acl_resources_controller_id_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1205,7 +1206,7 @@ ALTER TABLE ONLY acl_resources
 
 
 --
--- TOC entry 2140 (class 2606 OID 26890)
+-- TOC entry 2141 (class 2606 OID 26890)
 -- Name: acl_resources_module_id_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1214,7 +1215,7 @@ ALTER TABLE ONLY acl_resources
 
 
 --
--- TOC entry 2137 (class 2606 OID 26868)
+-- TOC entry 2138 (class 2606 OID 26868)
 -- Name: acl_roles_parent_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1223,7 +1224,7 @@ ALTER TABLE ONLY acl_roles
 
 
 --
--- TOC entry 2132 (class 2606 OID 26814)
+-- TOC entry 2133 (class 2606 OID 26814)
 -- Name: acompanhamento_aluno_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1232,7 +1233,7 @@ ALTER TABLE ONLY acompanhamento
 
 
 --
--- TOC entry 2134 (class 2606 OID 26824)
+-- TOC entry 2135 (class 2606 OID 26824)
 -- Name: acompanhamento_individual__acompanhamento_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1241,7 +1242,7 @@ ALTER TABLE ONLY acompanhamento_individual
 
 
 --
--- TOC entry 2133 (class 2606 OID 26819)
+-- TOC entry 2134 (class 2606 OID 26819)
 -- Name: acompanhamento_servidor_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1250,7 +1251,7 @@ ALTER TABLE ONLY acompanhamento
 
 
 --
--- TOC entry 2135 (class 2606 OID 26829)
+-- TOC entry 2136 (class 2606 OID 26829)
 -- Name: agenda_acompanhamento__acompanhamento_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1259,7 +1260,7 @@ ALTER TABLE ONLY agenda_acompanhamento
 
 
 --
--- TOC entry 2136 (class 2606 OID 26834)
+-- TOC entry 2137 (class 2606 OID 26834)
 -- Name: agenda_acompanhamento__agenda_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1268,7 +1269,7 @@ ALTER TABLE ONLY agenda_acompanhamento
 
 
 --
--- TOC entry 2129 (class 2606 OID 26799)
+-- TOC entry 2130 (class 2606 OID 26799)
 -- Name: aluno_curso_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1277,7 +1278,7 @@ ALTER TABLE ONLY aluno
 
 
 --
--- TOC entry 2128 (class 2606 OID 26794)
+-- TOC entry 2129 (class 2606 OID 26794)
 -- Name: aluno_pessoa_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1286,7 +1287,7 @@ ALTER TABLE ONLY aluno
 
 
 --
--- TOC entry 2117 (class 2606 OID 26739)
+-- TOC entry 2118 (class 2606 OID 26739)
 -- Name: atividade_remunerada__pessoa_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1295,7 +1296,7 @@ ALTER TABLE ONLY atividade_remunerada
 
 
 --
--- TOC entry 2118 (class 2606 OID 26744)
+-- TOC entry 2119 (class 2606 OID 26744)
 -- Name: atividade_remunerada__profissao_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1304,7 +1305,7 @@ ALTER TABLE ONLY atividade_remunerada
 
 
 --
--- TOC entry 2112 (class 2606 OID 26714)
+-- TOC entry 2113 (class 2606 OID 26714)
 -- Name: bairro_cidade_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1313,7 +1314,7 @@ ALTER TABLE ONLY bairro
 
 
 --
--- TOC entry 2111 (class 2606 OID 26709)
+-- TOC entry 2112 (class 2606 OID 26709)
 -- Name: cidade_uf_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1322,7 +1323,7 @@ ALTER TABLE ONLY cidade
 
 
 --
--- TOC entry 2125 (class 2606 OID 26789)
+-- TOC entry 2126 (class 2606 OID 26789)
 -- Name: contato__tipo_contato_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1331,7 +1332,7 @@ ALTER TABLE ONLY contato
 
 
 --
--- TOC entry 2130 (class 2606 OID 26804)
+-- TOC entry 2131 (class 2606 OID 26804)
 -- Name: curso_periodo_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1340,7 +1341,7 @@ ALTER TABLE ONLY curso
 
 
 --
--- TOC entry 2113 (class 2606 OID 26719)
+-- TOC entry 2114 (class 2606 OID 26719)
 -- Name: endereco_bairro_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1349,7 +1350,7 @@ ALTER TABLE ONLY endereco
 
 
 --
--- TOC entry 2121 (class 2606 OID 26759)
+-- TOC entry 2122 (class 2606 OID 26759)
 -- Name: familiares__profissao_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1358,7 +1359,7 @@ ALTER TABLE ONLY dados_familiares
 
 
 --
--- TOC entry 2127 (class 2606 OID 26774)
+-- TOC entry 2128 (class 2606 OID 26774)
 -- Name: familiares_contato__contato_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1367,7 +1368,7 @@ ALTER TABLE ONLY dados_familiares_contato
 
 
 --
--- TOC entry 2126 (class 2606 OID 26769)
+-- TOC entry 2127 (class 2606 OID 26769)
 -- Name: familiares_contato__familiares_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1376,7 +1377,7 @@ ALTER TABLE ONLY dados_familiares_contato
 
 
 --
--- TOC entry 2122 (class 2606 OID 26764)
+-- TOC entry 2123 (class 2606 OID 26764)
 -- Name: familiares_grau__parentesco_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1385,7 +1386,7 @@ ALTER TABLE ONLY dados_familiares
 
 
 --
--- TOC entry 2124 (class 2606 OID 26784)
+-- TOC entry 2125 (class 2606 OID 26784)
 -- Name: pessoa_contato__contato_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1394,7 +1395,7 @@ ALTER TABLE ONLY pessoa_contato
 
 
 --
--- TOC entry 2123 (class 2606 OID 26779)
+-- TOC entry 2124 (class 2606 OID 26779)
 -- Name: pessoa_contato__pessoa_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1403,7 +1404,7 @@ ALTER TABLE ONLY pessoa_contato
 
 
 --
--- TOC entry 2114 (class 2606 OID 26724)
+-- TOC entry 2115 (class 2606 OID 26724)
 -- Name: pessoa_endereco__endereco_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1412,7 +1413,7 @@ ALTER TABLE ONLY pessoa_endereco
 
 
 --
--- TOC entry 2115 (class 2606 OID 26729)
+-- TOC entry 2116 (class 2606 OID 26729)
 -- Name: pessoa_endereco__pessoa_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1421,7 +1422,7 @@ ALTER TABLE ONLY pessoa_endereco
 
 
 --
--- TOC entry 2116 (class 2606 OID 26734)
+-- TOC entry 2117 (class 2606 OID 26734)
 -- Name: pessoa_estado_civil_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1430,7 +1431,7 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 2120 (class 2606 OID 26754)
+-- TOC entry 2121 (class 2606 OID 26754)
 -- Name: pessoa_familiares__familiares_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1439,7 +1440,7 @@ ALTER TABLE ONLY pessoa_familiares
 
 
 --
--- TOC entry 2119 (class 2606 OID 26749)
+-- TOC entry 2120 (class 2606 OID 26749)
 -- Name: pessoa_familiares__pessoa_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1448,7 +1449,7 @@ ALTER TABLE ONLY pessoa_familiares
 
 
 --
--- TOC entry 2131 (class 2606 OID 26809)
+-- TOC entry 2132 (class 2606 OID 26809)
 -- Name: servidor_cargo_fk; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1457,7 +1458,7 @@ ALTER TABLE ONLY servidor
 
 
 --
--- TOC entry 2143 (class 2606 OID 26916)
+-- TOC entry 2144 (class 2606 OID 26916)
 -- Name: usuario_id_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1466,7 +1467,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- TOC entry 2144 (class 2606 OID 26921)
+-- TOC entry 2145 (class 2606 OID 26921)
 -- Name: usuario_role_fkey; Type: FK CONSTRAINT; Schema: saa; Owner: -
 --
 
@@ -1474,7 +1475,7 @@ ALTER TABLE ONLY usuario
     ADD CONSTRAINT usuario_role_fkey FOREIGN KEY (role_id) REFERENCES acl_roles(id);
 
 
--- Completed on 2015-02-08 00:28:49 BRT
+-- Completed on 2015-02-13 21:49:21 BRT
 
 --
 -- PostgreSQL database dump complete

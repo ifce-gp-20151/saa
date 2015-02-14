@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Acompanhamento
  *
  * @ORM\Table(name="saa.acompanhamento", indexes={@ORM\Index(name="IDX_85A671915DF1885", columns={"matricula"}), @ORM\Index(name="IDX_85A6719AB4EC365", columns={"id_servidor"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\AcompanhamentoRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Acompanhamento
 {
@@ -72,6 +73,13 @@ class Acompanhamento
     private $idAgenda;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=true, options={"default": "now()"})
+     */
+    private $dataCriacao;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -79,11 +87,17 @@ class Acompanhamento
         $this->idAgenda = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist() {
+        $this->dataCriacao = new \DateTime('now');
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -106,7 +120,7 @@ class Acompanhamento
     /**
      * Get motivo
      *
-     * @return string 
+     * @return string
      */
     public function getMotivo()
     {
@@ -129,7 +143,7 @@ class Acompanhamento
     /**
      * Get encaminhado
      *
-     * @return string 
+     * @return string
      */
     public function getEncaminhado()
     {
@@ -150,9 +164,18 @@ class Acompanhamento
     }
 
     /**
+     * Get dataCriacao
+     *
+     * @return Datetime
+     */
+    public function getDataCriacao() {
+        return $this->dataCriacao;
+    }
+
+    /**
      * Get matricula
      *
-     * @return \Core\Entity\Aluno 
+     * @return \Core\Entity\Aluno
      */
     public function getMatricula()
     {
@@ -175,7 +198,7 @@ class Acompanhamento
     /**
      * Get idServidor
      *
-     * @return \Core\Entity\Servidor 
+     * @return \Core\Entity\Servidor
      */
     public function getIdServidor()
     {
@@ -208,19 +231,20 @@ class Acompanhamento
     /**
      * Get idAgenda
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdAgenda()
     {
         return $this->idAgenda;
     }
-    
+
     public function exchangeArray($data) {
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
-        $this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
+        //$this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
         $this->motivo = (!empty($data['motivo'])) ? $data['motivo'] : null;
         $this->encaminhado = (!empty($data['encaminhado'])) ? $data['encaminhado'] : null;
-        $this->id_servidor = (!empty($data['id_servidor'])) ? $data['id_servidor'] : null;
+        //$this->id_servidor = (!empty($data['id_servidor'])) ? $data['id_servidor'] : null;
+        $this->dataCriacao = (!empty($data['data_criacao'])) ? $data['data_criacao'] : null;
     }
 
     public function getArrayCopy() {

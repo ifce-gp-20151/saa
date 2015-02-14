@@ -8,13 +8,28 @@ return array(
             'acompanhamento' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/acompanhamento[/][:action][/:id]',
+                    'route'    => '/psicologia/acompanhamento[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Psicologia\Controller\Acompanhamento',
+                        'action'     => 'index',
+                        'module'     => 'psicologia',
+                    ),
+                ),
+            ),
+            'acompanhamento-individual' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/psicologia/acompanhamento-individual[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Psicologia\Controller\AcompanhamentoIndividual',
                         'action'     => 'index',
                         'module'     => 'psicologia',
                     ),
@@ -58,6 +73,7 @@ return array(
         'invokables' => array(
             'Psicologia\Controller\Index' => 'Psicologia\Controller\IndexController',
             'Psicologia\Controller\Acompanhamento' => 'Psicologia\Controller\AcompanhamentoController',
+            'Psicologia\Controller\AcompanhamentoIndividualController' => 'Psicologia\Controller\AcompanhamentoIndividualControllerController',
         ),
     ),
     'view_manager' => array(

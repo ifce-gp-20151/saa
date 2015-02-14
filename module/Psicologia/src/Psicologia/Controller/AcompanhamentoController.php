@@ -24,7 +24,13 @@ class AcompanhamentoController extends AbstractActionController {
     }
 
     public function indexAction() {
-        return new ViewModel();
+        $session = $this->getServiceLocator()->get('Session');
+        $user = $session->offsetGet('user');
+        return new ViewModel(array(
+            'list' => $this->getEntityManager()
+                ->getRepository('Core\Entity\Acompanhamento')
+                ->listarPorPsicologo($user->id),
+        ));
     }
 
     public function criarAction() {
@@ -32,17 +38,17 @@ class AcompanhamentoController extends AbstractActionController {
         $params = array(
             'form' => $form,
         );
-        
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $obj = new Acompanhamento();
             $filter = new AcompanhamentoFilter();
             $form->setInputFilter($filter->getInputFilter());
             $form->setData($request->getPost());
-            
+
             if ($form->isValid()) {
                 $data = $form->getData();
-                
+
                 // validar matricula
                 $aluno = $this->getEntityManager()->getRepository('Core\Entity\Aluno')
                     ->findOneBy(array('matricula' => $data['matricula']));
@@ -50,12 +56,12 @@ class AcompanhamentoController extends AbstractActionController {
                     $this->messages()->flashWarning(sprintf('Aluno com matrícula %d não encontrado.', $data['matricula']));
                     return $this->redirect()->toRoute('acompanhamento');
                 }
-                
+
                 $session = $this->getServiceLocator()->get('Session');
 				$user = $session->offsetGet('user');
                 $servidor = $this->getEntityManager()->getRepository('Core\Entity\Servidor')
                     ->findOneBy(array('id' => $user->id));
-                
+
                 $obj->exchangeArray($data);
                 $obj->setMatricula($aluno);
                 $obj->setIdServidor($servidor);
@@ -74,14 +80,14 @@ class AcompanhamentoController extends AbstractActionController {
                 $form->get('matricula')->setValue($matricula);
             }
         }
-        
+
         $viewModel = new ViewModel($params);
 		$viewModel->setVariable('title', 'Novo Acompanhamento');
 		$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
 
 		return $viewModel;
     }
-    
+
     public function ajaxBuscarAlunoAction() {
         $params = array();
         $request = $this->getRequest();
@@ -101,7 +107,7 @@ class AcompanhamentoController extends AbstractActionController {
         } else {
             $params['error'] = 'Requisição não pode ser concluída.';
         }
-        
+
         return new JsonModel($params);
     }
 }
