@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Endereco
  *
  * @ORM\Table(name="saa.endereco", indexes={@ORM\Index(name="IDX_F8E0D60EA7C487E8", columns={"id_bairro"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\EnderecoRepository")
  */
 class Endereco
 {
@@ -79,7 +79,7 @@ class Endereco
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,7 +102,7 @@ class Endereco
     /**
      * Get logradouro
      *
-     * @return string 
+     * @return string
      */
     public function getLogradouro()
     {
@@ -125,7 +125,7 @@ class Endereco
     /**
      * Get numero
      *
-     * @return string 
+     * @return string
      */
     public function getNumero()
     {
@@ -148,7 +148,7 @@ class Endereco
     /**
      * Get cep
      *
-     * @return string 
+     * @return string
      */
     public function getCep()
     {
@@ -171,7 +171,7 @@ class Endereco
     /**
      * Get complemento
      *
-     * @return string 
+     * @return string
      */
     public function getComplemento()
     {
@@ -194,7 +194,7 @@ class Endereco
     /**
      * Get idBairro
      *
-     * @return \Core\Entity\Bairro 
+     * @return \Core\Entity\Bairro
      */
     public function getIdBairro()
     {
@@ -227,7 +227,7 @@ class Endereco
     /**
      * Get idPessoa
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdPessoa()
     {

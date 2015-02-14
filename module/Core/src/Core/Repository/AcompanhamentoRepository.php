@@ -28,7 +28,7 @@ class AcompanhamentoRepository extends EntityRepository {
             to_char(a.data_criacao, 'DD/MM/YYYY') as data_criacao, al.situacao_escolar,
             p.id, p.nome, p.rg, p.sexo, to_char(p.dt_nascimento, 'DD/MM/YYYY') as dt_nascimento,
             extract(year FROM age(current_date, p.dt_nascimento)) as idade,
-            saa.to_cpf(p.cpf) AS cpf, c.descricao AS curso, pr.descricao AS periodo,
+            p.cpf, c.descricao AS curso, pr.descricao AS periodo,
             ec.descricao AS estado_civil, fl_ativo, pro.descricao AS profissao
             FROM saa.acompanhamento a
             INNER JOIN saa.aluno al ON a.matricula = al.matricula

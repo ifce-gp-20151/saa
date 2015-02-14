@@ -79,9 +79,8 @@
             <?php else: ?>
                 <span class="label label-danger">Não</span>
             <?php endif; ?>
-            <div>
-                <?php echo $obj['profissao']; ?>
-            </div>
+
+            <?php echo $obj['profissao']; ?>
         </div>
     </div>
     <div class="col-md-3">
@@ -95,6 +94,84 @@
         <div>
             <?php echo $obj['periodo']; ?>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <hr>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Endereço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($enderecos as $item): ?>
+                    <tr>
+                        <td>
+                            <?php echo $item['logradouro'] ?>,
+                            n. <?php echo $item['numero'] ?> -
+                            <?php echo $item['cep'] ?> -
+                            <?php echo $item['cidade'] ?>,
+                            <?php echo $item['bairro'] ?> -
+                            <?php echo $item['sigla'] ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <hr>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Contato</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-12">
+        <h4>II. Dados familiares</h4>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Telefone</th>
+                    <th>Profissão</th>
+                    <th>Parentesco</th>
+                    <th>Mora na mesma casa?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($familiares as $item): ?>
+                    <tr>
+                        <td><?php echo $item['nome'] ?></td>
+                        <td><?php echo $item['idade'] ?></td>
+                        <td><?php echo 'null' ?></td>
+                        <td><?php echo $item['profissao'] ?></td>
+                        <td><?php echo $item['grau_parentesco'] ?></td>
+                        <td>
+                            <?php if($item['flMora']): ?>
+                                <span class="label label-success">Sim</span>
+                            <?php else: ?>
+                                <span class="label label-danger">Não</span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DadosFamiliares
  *
  * @ORM\Table(name="saa.dados_familiares", indexes={@ORM\Index(name="IDX_D232754CC14DC792", columns={"id_profissao"}), @ORM\Index(name="IDX_D232754C15ED79C3", columns={"id_grau_parentesco"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\DadosFamiliaresRepository")
  */
 class DadosFamiliares
 {
@@ -98,7 +98,7 @@ class DadosFamiliares
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -121,7 +121,7 @@ class DadosFamiliares
     /**
      * Get nome
      *
-     * @return string 
+     * @return string
      */
     public function getNome()
     {
@@ -144,7 +144,7 @@ class DadosFamiliares
     /**
      * Get idade
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdade()
     {
@@ -167,7 +167,7 @@ class DadosFamiliares
     /**
      * Get flMora
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getFlMora()
     {
@@ -190,7 +190,7 @@ class DadosFamiliares
     /**
      * Get idProfissao
      *
-     * @return \Core\Entity\Profissao 
+     * @return \Core\Entity\Profissao
      */
     public function getIdProfissao()
     {
@@ -213,7 +213,7 @@ class DadosFamiliares
     /**
      * Get idGrauParentesco
      *
-     * @return \Core\Entity\GrauParentesco 
+     * @return \Core\Entity\GrauParentesco
      */
     public function getIdGrauParentesco()
     {
@@ -246,7 +246,7 @@ class DadosFamiliares
     /**
      * Get idPessoa
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdPessoa()
     {
@@ -279,7 +279,7 @@ class DadosFamiliares
     /**
      * Get idContato
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdContato()
     {

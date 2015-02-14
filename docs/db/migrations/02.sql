@@ -1,8 +1,5 @@
 START TRANSACTION;
 
-ALTER TABLE saa.pessoa DROP COLUMN cpf;
-ALTER TABLE saa.pessoa ADD COLUMN cpf numeric(11) NOT NULL default 0;
-
 DROP FUNCTION IF EXISTS saa.to_cpf(numeric);
 
 CREATE OR REPLACE FUNCTION saa.to_cpf(numeric)
