@@ -2,20 +2,27 @@
 -- acl inserts
 --
 
+--
+-- Roles
+---
 INSERT INTO saa.acl_roles (id, role, parent) VALUES (1, 'visitante', NULL);
 INSERT INTO saa.acl_roles (id, role, parent) VALUES (2, 'usuario', 1);
 INSERT INTO saa.acl_roles (id, role, parent) VALUES (3, 'admin', 2);
 INSERT INTO saa.acl_roles (id, role, parent) VALUES (4, 'psicologo', 2);
 INSERT INTO saa.acl_roles (id, role, parent) VALUES (5, 'pedagogo', 2);
 
-
+--
+-- Modules
+--
 INSERT INTO saa.acl_modules(id, module) VALUES (1, 'Application');
 INSERT INTO saa.acl_modules(id, module) VALUES (2, 'ZFTool');
 INSERT INTO saa.acl_modules(id, module) VALUES (3, 'Psicologia');
 INSERT INTO saa.acl_modules(id, module) VALUES (4, 'Pedagogia');
 INSERT INTO saa.acl_modules(id, module) VALUES (5, 'Admin');
 
-
+--
+-- Controllers
+--
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 1, 'Index');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 2, 'Auth');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 3, 'Usuario');
@@ -23,8 +30,11 @@ INSERT INTO saa.acl_controllers(id, controller) VALUES ( 4, 'Module');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 5, 'Create');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 6, 'Profissao');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 7, 'Acompanhamento');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 8, 'AcompanhamentoIndividual');
 
-
+--
+-- Actions
+--
 INSERT INTO saa.acl_actions(id, action) VALUES (  1, 'index');
 INSERT INTO saa.acl_actions(id, action) VALUES (  2, 'about');
 INSERT INTO saa.acl_actions(id, action) VALUES (  3, 'login');
@@ -40,8 +50,11 @@ INSERT INTO saa.acl_actions(id, action) VALUES ( 12, 'module');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 13, 'controller');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 14, 'ajax-buscar-aluno');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 15, 'detalhes');
+INSERT INTO saa.acl_actions(id, action) VALUES ( 16, 'ajax-salvar');
 
-
+--
+-- Resources
+--
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES (  1, 1,  1,  1);--index/index
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES (  2, 1,  1,  2);--index/about
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES (  3, 1,  2,  3);--auth/login
@@ -66,7 +79,13 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 22, 3,  7,  5);--psicologia/acompanhamento/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 23, 3,  7, 14);--psicologia/acompanhamento/ajax-buscar-aluno
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 24, 3,  7, 15);--psicologia/acompanhamento/detalhes
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 25, 3,  8,  5);--psicologia/acompanhamento-individual/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 26, 3,  8,  6);--psicologia/acompanhamento-individual/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 27, 3,  8, 16);--psicologia/acompanhamento-individual/ajax-salvar
 
+--
+-- Privileges
+--
 
 --
 -- visitante
@@ -110,3 +129,6 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 21, 4, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 22, 4, true);--psicologia/acompanhamento/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 23, 4, true);--psicologia/acompanhamento/ajax-buscar-aluno
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 24, 4, true);--psicologia/acompanhamento/detalhes
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 25, 4, true);--psicologia/acompanhamento-individual/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 26, 4, true);--psicologia/acompanhamento-individual/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 27, 4, true);--psicologia/acompanhamento-individual/ajax-salvar

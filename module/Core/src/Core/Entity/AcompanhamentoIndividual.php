@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * AcompanhamentoIndividual
  *
  * @ORM\Table(name="saa.acompanhamento_individual", indexes={@ORM\Index(name="IDX_36C13975353CDA1F", columns={"id_acompanhamento"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\AcompanhamentoIndividualRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class AcompanhamentoIndividual
 {
@@ -18,7 +19,7 @@ class AcompanhamentoIndividual
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="acompanhamento_individual_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="saa.acompanhamento_individual_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -46,12 +47,24 @@ class AcompanhamentoIndividual
      */
     private $idAcompanhamento;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao;
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist() {
+        $this->dataCriacao = new \DateTime('now');
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,7 +87,7 @@ class AcompanhamentoIndividual
     /**
      * Get numeroEncontro
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumeroEncontro()
     {
@@ -97,7 +110,7 @@ class AcompanhamentoIndividual
     /**
      * Get descricao
      *
-     * @return string 
+     * @return string
      */
     public function getDescricao()
     {
@@ -120,10 +133,20 @@ class AcompanhamentoIndividual
     /**
      * Get idAcompanhamento
      *
-     * @return \Core\Entity\Acompanhamento 
+     * @return \Core\Entity\Acompanhamento
      */
     public function getIdAcompanhamento()
     {
         return $this->idAcompanhamento;
+    }
+
+    public function exchangeArray($data) {
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+        $this->numero_encontro = (!empty($data['numero_encontro'])) ? $data['numero_encontro'] : null;
+        $this->descricao = (!empty($data['descricao'])) ? $data['descricao'] : null;
+    }
+
+    public function getArrayCopy() {
+        return get_object_vars($this);
     }
 }

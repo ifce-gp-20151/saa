@@ -1,0 +1,61 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/quill/quill.snow.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/alertify/alertify.min.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/alertify/themes/bootstrap.min.css');
+
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/alertify/alertify.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/alertify/alertify.config.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/mousetrap/mousetrap.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/mousetrap/mousetrap-global-bind.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/quill/quill.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/js/psicologia/acompanhamento-individual/salvar.js');
+?>
+
+<style media="screen">
+    #toolbar {
+        border-bottom: 1px solid #CCC;
+        border-top: 1px solid #CCC;
+    }
+
+    .quill-wrapper {
+        border-bottom: 1px solid #CCC;
+        border-top: 1px solid #CCC;
+        background-color: #FFF;
+        border-left: 1px solid #CCC;
+        border-right: 1px solid #CCC;
+        box-shadow: 0px 0px 10px #CCC;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    #editor {
+        height: 400px;
+    }
+</style>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li><a href="<?php echo $this->url('psicologia') ?>">Psicologia</a></li>
+    <li><a href="<?php echo $this->url('acompanhamento') ?>">Acompanhamento</a></li>
+    <li><a href="<?php echo $this->url('acompanhamento', array(
+        'action' => 'detalhes',
+        'id' => $id_acompanhamento
+    )) ?>">Detalhes</a></li>
+    <li class="active">Acompanhamento Individual</li>
+</ol>
+
+<h4>Acompanhamento individual - Encontro #<?php echo $obj->getNumeroEncontro(); ?></h4><hr>
+
+<div class="row">
+    <div class="col-md-9 col-md-offset-1">
+        <div class="quill-wrapper">
+            <?php echo $this->partial('partials/acompanhamento-individual/salvar/toolbar.phtml'); ?>
+
+            <div id="editor"
+                class="editor ql-container ql-snow"><?php echo $obj->getDescricao(); ?></div>
+
+            <?php echo $this->formInput($form->get('id')); ?>
+        </div>
+    </div>
+</div>

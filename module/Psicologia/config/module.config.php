@@ -23,10 +23,11 @@ return array(
             'acompanhamento-individual' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/psicologia/acompanhamento-individual[/][:action][/:id]',
+                    'route'    => '/psicologia/acompanhamento-individual[/][:action][/:id][/acompanhamento/:id_acompanhamento]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
+                        'id_acompanhamento' => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Psicologia\Controller\AcompanhamentoIndividual',
@@ -73,7 +74,7 @@ return array(
         'invokables' => array(
             'Psicologia\Controller\Index' => 'Psicologia\Controller\IndexController',
             'Psicologia\Controller\Acompanhamento' => 'Psicologia\Controller\AcompanhamentoController',
-            'Psicologia\Controller\AcompanhamentoIndividualController' => 'Psicologia\Controller\AcompanhamentoIndividualControllerController',
+            'Psicologia\Controller\AcompanhamentoIndividual' => 'Psicologia\Controller\AcompanhamentoIndividualController',
         ),
     ),
     'view_manager' => array(
