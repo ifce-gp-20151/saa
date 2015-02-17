@@ -1,0 +1,148 @@
+\section{Definir Autorização (ACL)}\label{definir-autorizauxe7uxe3o-acl}
+
+No arquivo \texttt{./docs/db/dml.acl.sql} adicione os \texttt{INSERT}'s
+necessários.
+
+Exemplo para um \emph{Controller} \texttt{Professor} no módulo
+\texttt{Application}, com a \emph{action} \texttt{index}, em que apenas
+o \texttt{admin} tem acesso.
+
+Neste arquivo temos as \emph{Roles} ou Papeis, indicando qual o tipo de
+usuário. Algumas \emph{roles} já foram definidas, como a \texttt{admin}.
+
+Temos também os \emph{Modules}. O módulo que a gente quer também já
+existe \texttt{Application}.
+
+Em seguida temos os \texttt{Controllers}. Esse vamos precisar criar.
+Para isso basta adicionar uma linha, colocando o id como incremento do
+anterior e o nome do controller:
+
+\begin{verbatim}
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 9, 'Professor');
+\end{verbatim}
+
+Abaixo temos as \emph{Actions}. A action \texttt{index} também já
+existe.
+
+Em seguida temos os \emph{Resources} ou Recursos, indicando o trio
+\emph{Module}, \emph{Controller}, \emph{Action}. Crie a linha:
+
+\begin{verbatim}
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id)
+VALUES (28, 1, 9, 1);--application/professor/index
+\end{verbatim}
+
+Por fim temos os \emph{Privileges} ou Privilégios, indicando que
+\emph{Role} tem acesso a que \emph{Resource}. Crie no local indicado
+pelos comentários:
+
+\begin{verbatim}
+-- 
+-- admin
+-- 
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow)
+VALUES ( 28, 3, true);--application/professor/index
+\end{verbatim}
+
+Execute as queries no banco de dados.
+
+\section{Crie uma rota}\label{crie-uma-rota}
+
+As rotas são definidas no arquivo
+\texttt{./module/Application/config/module.config.php}. Existe um
+arquivo desses para cada módulo. Encontre o trecho:
+
+\begin{verbatim}
+'router' => array(
+    'routes' => array(
+        /* código existente ... */
+    ),
+),
+\end{verbatim}
+
+Adicione a linha:
+
+\begin{verbatim}
+'professor' => array(
+    'type' => 'Segment',
+    'options' => array(
+        'route'    => '/professor',
+        'defaults' => array(
+            'controller' => 'Application\Controller\Professor',
+            'action'     => 'index',
+            'module'     => 'application',
+        ),
+    ),
+),
+\end{verbatim}
+
+\section{Mapeie o Controller}\label{mapeie-o-controller}
+
+Os controllers são mepeados nesse mesmo arquivo. Encontre o trecho:
+
+\begin{verbatim}
+'controllers' => array(
+        'invokables' => array(
+            /* código existente ... */
+        ),
+    ),
+\end{verbatim}
+
+Adicione a linha:
+
+\begin{verbatim}
+'Application\Controller\Professor' => 'Application\Controller\ProfessorController',
+\end{verbatim}
+
+\section{Criar o Controller}\label{criar-o-controller}
+
+Crie o arquivo \texttt{ProfessorController} dentro de
+\texttt{./module/Application/src/Application/Controller/}.
+
+Com o conteúdo:
+
+\begin{verbatim}
+<?php
+
+namespace  Application\Controller;
+
+use Zend\View\Model\ViewModel;
+use Core\Controller\ActionController;
+
+class ProfessorController extends ActionController {
+
+    /**
+     * @var DoctrineORMEntityManager
+     */
+    protected $em;
+    
+    private function getEntityManager() {
+        if (null === $this->em) {
+            $this->em = $this->getServiceLocator()
+                ->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->em;
+    }
+    
+    public function indexAction() {
+        return new ViewModel(array());
+    }
+}
+\end{verbatim}
+
+\section{Criar View}\label{criar-view}
+
+Crie o arquivo \texttt{index.phtml} dentro de
+
+\texttt{./module/Application/view/application/professor/}.
+
+Com o conteúdo:
+
+\begin{verbatim}
+<h3>você está em application/professor/index</h3>
+\end{verbatim}
+
+\section{Acessar Action}\label{acessar-action}
+
+Faça login com usuário da \emph{role} \texttt{admin}, digite no final da
+URL: \texttt{/professor}.
