@@ -128,11 +128,16 @@ class AcompanhamentoController extends AbstractActionController {
         $familiares = $this->getEntityManager()
             ->getRepository('Core\Entity\DadosFamiliares')
             ->listarPor($obj['id']);
+        
+        $acompanhamentos = $this->getEntityManager()
+            ->getRepository('Core\Entity\AcompanhamentoIndividual')
+            ->listarPor($id);
 
         return new ViewModel(array(
             'obj' => $obj,
             'enderecos' => $enderecos,
             'familiares' => $familiares,
+            'acompanhamentos' => $acompanhamentos,
             'id' => $id,
         ));
     }
