@@ -7,6 +7,17 @@ use Application\Service\Auth;
 return array(
     'router' => array(
         'routes' => array(
+            'aluno' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/aluno',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Aluno',
+                        'action'     => 'index',
+                        'module'     => 'application',
+                    ),
+                ),
+            ),
             'home' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -138,6 +149,7 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Auth' => 'Application\Controller\AuthController',
             'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
+            'Application\Controller\Aluno' => 'Application\Controller\AlunoController',
         ),
     ),
     'view_manager' => array(

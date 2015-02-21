@@ -1,0 +1,64 @@
+<?php
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/momentjs/moment-with-locales.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/js/application/aluno/index.js');
+?>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li class="active">Aluno</li>
+</ol>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <h3>Alunos</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Curso/Período</th>
+                    <th>Situação Escolar</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <?php foreach($list as $item): ?>
+
+                <tr>
+                    <td>
+                        <?php echo $item->getMatricula(); ?>
+                    </td>
+                    <td>
+                        <?php echo $item->getIdPessoa()->getNome(); ?>
+                    </td>
+                    <td>
+                        <?php echo $item->getIdCurso()->getDescricao(); ?>
+                        /
+                        <?php echo $item->getIdCurso()->getIdPeriodo()->getDescricao(); ?>
+                    </td>
+                    <td>
+                        <?php echo $item->getSituacaoEscolar(); ?>
+                    </td>
+
+                    <td>
+                      <div class="btn-group">
+                          <a href="<?php echo $this->url('acompanhamento', array(
+                              'action' => 'criar',
+                              'data' => $item,
+                          )) ?>" class="btn btn-default">
+                              <i class="fa fa-tasks"></i> Acompanhamento
+                          </a>
+
+                      </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
