@@ -47,10 +47,8 @@
 
                     <td>
                       <div class="btn-group">
-                          <a href="<?php echo $this->url('acompanhamento', array(
-                              'action' => 'criar',
-                              'data' => $item,
-                          )) ?>" class="btn btn-default">
+                          <a href="<?php echo $this->url('acompanhamento', array('action' => 'criar')) . '?matricula=' . $item->getMatricula();
+                          ?>" class="btn btn-default">
                               <i class="fa fa-tasks"></i> Acompanhamento
                           </a>
 
