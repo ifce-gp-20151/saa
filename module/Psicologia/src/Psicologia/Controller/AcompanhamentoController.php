@@ -75,7 +75,7 @@ class AcompanhamentoController extends AbstractActionController {
                 }
             }
         } else {
-            $matricula = (int) $this->params()->fromQuery('matricula', 0);
+            $matricula = $this->params()->fromQuery('matricula');
             if ($matricula > 0) {
                 $form->get('matricula')->setValue($matricula);
             }
@@ -92,7 +92,7 @@ class AcompanhamentoController extends AbstractActionController {
         $params = array();
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $matricula = (int) $this->params()->fromPost('matricula');
+            $matricula = $this->params()->fromPost('matricula');
             try {
                 $aluno = $this->getEntityManager()->getRepository('Core\Entity\Aluno')->ajaxFindByMatricula($matricula);
                 if ($aluno) {
