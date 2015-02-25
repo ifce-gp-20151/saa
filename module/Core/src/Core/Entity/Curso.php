@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Curso
  *
  * @ORM\Table(name="saa.curso", indexes={@ORM\Index(name="IDX_CA3B40ECAD8B6D9D", columns={"id_periodo"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\CursoRepository")
  */
 class Curso
 {
@@ -44,7 +44,7 @@ class Curso
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -67,7 +67,7 @@ class Curso
     /**
      * Get descricao
      *
-     * @return string 
+     * @return string
      */
     public function getDescricao()
     {
@@ -90,7 +90,7 @@ class Curso
     /**
      * Get idPeriodo
      *
-     * @return \Core\Entity\Periodo 
+     * @return \Core\Entity\Periodo
      */
     public function getIdPeriodo()
     {

@@ -1,4 +1,4 @@
---
+﻿--
 -- acl inserts
 --
 
@@ -52,6 +52,7 @@ INSERT INTO saa.acl_actions(id, action) VALUES ( 13, 'controller');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 14, 'ajax-buscar-aluno');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 15, 'detalhes');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 16, 'ajax-salvar');
+INSERT INTO saa.acl_actions(id, action) VALUES ( 17, 'ajax-buscar-curso');
 
 --
 -- Resources
@@ -83,14 +84,15 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 25, 3,  8,  5);--psicologia/acompanhamento-individual/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 26, 3,  8,  6);--psicologia/acompanhamento-individual/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 27, 3,  8, 16);--psicologia/acompanhamento-individual/ajax-salvar
-
---
--- Privileges
---
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 28, 1,  9,  1);--aluno/index
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 29, 1,  9,  5);--aluno/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 30, 1,  9,  6);--aluno/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 31, 1,  9,  7);--aluno/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 32, 1,  9, 17);--aluno/ajax-buscar-curso
+
+--
+-- Privileges
+--
 
 --
 -- visitante
@@ -141,3 +143,4 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 28, 4, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 29, 4, true);--aluno/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 30, 4, true);--aluno/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 31, 4, true);--aluno/deletar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 32, 4, true);--aluno/ajax-buscar-curso

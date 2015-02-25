@@ -1,0 +1,81 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/alertify/alertify.min.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/alertify/themes/bootstrap.min.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/select2/select2.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/select2-bootstrap3-css/select2-bootstrap.css');
+
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/alertify/alertify.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/alertify/alertify.config.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/sprintf/sprintf.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/select2/select2.min.js');
+
+
+    $this->headScript()->appendFile($this->basePath() . '/js/application/aluno/salvar.js');
+?>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li><a href="<?php echo $this->url('aluno') ?>">Aluno</a></li>
+    <li class="active"><?php echo $title ?></li>
+</ol>
+
+<h4><?php echo $title ?></h4><hr/>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formRow($form->get('matricula')); ?>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('id_curso')); ?>
+            <?php echo $this->formInput($form->get('id_curso')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('id_curso')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('id_pessoa')); ?>
+            <?php echo $this->formInput($form->get('id_pessoa')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('id_pessoa')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('situacao_escolar')); ?>
+            <?php echo $this->formTextarea($form->get('situacao_escolar')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('situacao_escolar')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-8">
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+<?php
+    echo $this->form()->closeTag();
+?>

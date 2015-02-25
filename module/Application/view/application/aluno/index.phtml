@@ -31,23 +31,24 @@
 
                 <tr>
                     <td>
-                        <?php echo $item->getMatricula(); ?>
+                        <?php echo $item['matricula']; ?>
                     </td>
                     <td>
-                        <?php echo $item->getIdPessoa()->getNome(); ?>
+
+                        <?php echo $item['nome']; ?>
                     </td>
                     <td>
-                        <?php echo $item->getIdCurso()->getDescricao(); ?>
+                        <?php echo $item['curso']; ?>
                         /
-                        <?php echo $item->getIdCurso()->getIdPeriodo()->getDescricao(); ?>
+                        <?php echo $item['periodo']; ?>
                     </td>
                     <td>
-                        <?php echo $item->getSituacaoEscolar(); ?>
+                        <?php echo $item['situacaoEscolar']; ?>
                     </td>
 
                     <td>
                       <div class="btn-group">
-                          <a href="<?php echo $this->url('acompanhamento', array('action' => 'criar')) . '?matricula=' . $item->getMatricula();
+                          <a href="<?php echo $this->url('acompanhamento', array('action' => 'criar')) . '?matricula=' . $item['matricula'];
                           ?>" class="btn btn-default">
                               <i class="fa fa-tasks"></i> Acompanhamento
                           </a>

@@ -5,7 +5,7 @@ namespace Core\Repository;
 use Doctrine\ORM\EntityRepository;
 
 class AlunoRepository extends EntityRepository {
-    
+
     public function ajaxFindByMatricula($matricula) {
         $dql = "SELECT a.situacaoEscolar, p.nome, c.descricao as curso, pe.descricao as periodo
         FROM Core\Entity\Aluno a
@@ -20,5 +20,17 @@ class AlunoRepository extends EntityRepository {
             return $result[0];
         }
         return null;
+    }
+
+    public function listar() {
+      $dql = "SELECT a.matricula, p.nome, c.descricao as curso, pe.descricao as periodo, a.situacaoEscolar
+              FROM Core\Entity\Aluno a
+              JOIN a.idPessoa p
+              JOIN a.idCurso c
+              JOIN c.idPeriodo pe
+             ";
+      $query = $this->getEntityManager()->createQuery( $dql );
+      return $query->getResult();
+
     }
 }
