@@ -2,6 +2,8 @@
 
 [Ubuntu 14.04 LTS](http://www.ubuntu.com/download/desktop/)
 
+Para outros sistemas procure pelos pacotes com o nome igual ou semelhante.
+
 ## Dependências
 
 Execute o _script_ abaixo para instalar as dependências:
@@ -103,10 +105,14 @@ cp ./vendor/zendframework/zend-developer-tools/config/zenddevelopertools.local.p
 ./config/autoload/zenddevelopertools.local.php
 ~~~
 
-Execute os scripts abaixo usando PgAdmin.
+Execute os scripts abaixo usando `PgAdmin`.
 
-* `./docs/db/ddl.acl.sql`
+* `./docs/db/ddl.sql`
 * `./docs/db/dml.acl.sql`
+
+### Já tinha o banco mas está diferente
+
+Utilize os arquivos dentro de `/docs/db/migrations/*.sql`, execute um a um na ordem.
 
 ### Configuração Apache 2 (2.2.22-1ubuntu1.7)
 
@@ -147,6 +153,12 @@ Crie o arquivo `saa.conf` em `/etc/apache2/sites-enabled` com o conteúdo:
 </VirtualHost>
 ~~~
 
+Habilite o `rewrite` (se já não estiver):
+
+~~~
+sudo a2enmod rewrite
+~~~
+
 Reinicie o apache2:
 
 ~~~
@@ -184,6 +196,8 @@ public function attachShared(SharedEventManagerInterface $events)
 
 ## Criação de entidades (Entities) a partir do banco de dados
 
+**Obs.**: esta parte já foi feita, é apenas para documentar.
+
 ~~~
 ./vendor/bin/doctrine-module orm:convert-mapping --filter="Usuario" \
 --from-database annotation --namespace="Application\\Entity\\" \
@@ -193,6 +207,8 @@ module/Application/src
 onde `Usuario` é o nome da tabela a ser gerada.
 
 ## Criação dos _getters_ e _setters_
+
+**Obs.**: esta parte já foi feita, é apenas para documentar.
 
 ~~~
 ./vendor/bin/doctrine-module orm:generate-entities \

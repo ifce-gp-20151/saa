@@ -1,8 +1,11 @@
-\section{Sistema recomendado}\label{sistema-recomendado}
+\section{Sistema recomendado}
 
 \href{http://www.ubuntu.com/download/desktop/}{Ubuntu 14.04 LTS}
 
-\subsection{Dependências}\label{dependuxeancias}
+Para outros sistemas procure pelos pacotes com o nome igual ou
+semelhante.
+
+\subsection{Dependências}
 
 Execute o \emph{script} abaixo para instalar as dependências:
 
@@ -12,8 +15,7 @@ sudo apt-get update
 sudo apt-get install oracle-java7-installer
 sudo apt-get install php5 apache2 php5-pgsql php5-mcrypt php5-intl
 \end{verbatim}
-
-\subsection{IDE}\label{ide}
+\subsection{IDE}
 
 Escolha a IDE de sua preferência.
 
@@ -22,14 +24,12 @@ Recomendado: \href{https://netbeans.org/}{NetBeans IDE}.
 Outras:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \href{https://atom.io/}{Atom}
 \item
   \href{http://eclipse.org/pdt/}{Eclipse IDE}
 \end{itemize}
-
-\subsection{PostgreSQL}\label{postgresql}
+\subsection{PostgreSQL}
 
 \url{http://www.postgresql.org/download/linux/ubuntu/}
 
@@ -39,7 +39,6 @@ linha para o repositório:
 \begin{verbatim}
 deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
 \end{verbatim}
-
 Importe a chave assinada do repositório, e atualize a lista de pacotes
 
 \begin{verbatim}
@@ -48,8 +47,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
 sudo apt-get update
 apt-get install postgresql-9.4
 \end{verbatim}
-
-\section{Configurar projeto local}\label{configurar-projeto-local}
+\section{Configurar projeto local}
 
 Faça um \emph{clone} do projeto usando ssh:
 
@@ -57,7 +55,6 @@ Faça um \emph{clone} do projeto usando ssh:
 cd NetBeansProjects
 git clone git@github.com:ifce-gp-20151/saa.git
 \end{verbatim}
-
 \textbf{Obs.}: Você pode utilizar outro diretório para seu projeto, não
 é necessário ser \texttt{NetBeansProjects}.
 
@@ -69,13 +66,11 @@ Entre no diretório do projeto:
 \begin{verbatim}
 cd saa
 \end{verbatim}
-
 Instale as dependências do projeto:
 
 \begin{verbatim}
 php composer.phar install
 \end{verbatim}
-
 Crie o arquivo \texttt{local.php} em \texttt{config/autoload} com o
 conteúdo:
 
@@ -89,7 +84,6 @@ return array(
     )
 );
 \end{verbatim}
-
 Crie o arquivo \texttt{ocra-service-manager.local.php} em
 \texttt{config/autoload} com o conteúdo:
 
@@ -103,26 +97,26 @@ return array(
     ),
 );
 \end{verbatim}
-
 Copie o arquivo \texttt{zenddevelopertools.local.php.dist}:
 
 \begin{verbatim}
 cp ./vendor/zendframework/zend-developer-tools/config/zenddevelopertools.local.php.dist \
 ./config/autoload/zenddevelopertools.local.php
 \end{verbatim}
-
-Execute os scripts abaixo usando PgAdmin.
+Execute os scripts abaixo usando \texttt{PgAdmin}.
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
-  \texttt{./docs/db/ddl.acl.sql}
+  \texttt{./docs/db/ddl.sql}
 \item
   \texttt{./docs/db/dml.acl.sql}
 \end{itemize}
+\subsubsection{Já tinha o banco mas está diferente}
 
-\subsubsection{Configuração Apache 2
-(2.2.22-1ubuntu1.7)}\label{configurauxe7uxe3o-apache-2-2.2.22-1ubuntu1.7}
+Utilize os arquivos dentro de \texttt{/docs/db/migrations/*.sql},
+execute um a um na ordem.
+
+\subsubsection{Configuração Apache 2 (2.2.22-1ubuntu1.7)}
 
 Crie o arquivo \texttt{saa} em \texttt{/etc/apache2/sites-enabled} com o
 conteúdo:
@@ -140,9 +134,7 @@ conteúdo:
     </Directory>
 </VirtualHost>
 \end{verbatim}
-
-\subsubsection{Apache 2
-(2.4.7-1ubuntu4.1)}\label{apache-2-2.4.7-1ubuntu4.1}
+\subsubsection{Apache 2 (2.4.7-1ubuntu4.1)}
 
 Crie o arquivo \texttt{saa.conf} em \texttt{/etc/apache2/sites-enabled}
 com o conteúdo:
@@ -163,33 +155,35 @@ com o conteúdo:
     CustomLog /var/log/apache2/access.log combined
 </VirtualHost>
 \end{verbatim}
+Habilite o \texttt{rewrite} (se já não estiver):
 
+\begin{verbatim}
+sudo a2enmod rewrite
+\end{verbatim}
 Reinicie o apache2:
 
 \begin{verbatim}
 sudo service apache2 restart
 \end{verbatim}
-
 Crie um virtual host, edite \texttt{/etc/hosts}, e adicione esta linha
 ao final:
 
 \begin{verbatim}
 127.0.1.1       saa.local
 \end{verbatim}
-
 Ok, você deve estar pronto agora. Acesse o endereço
 \url{http://saa.local}
 
-\subsection{Armadilhas}\label{armadilhas}
+\subsection{Armadilhas}
 
-\subsubsection{Erro de sessão}\label{erro-de-sessuxe3o}
+\subsubsection{Erro de sessão}
 
 \url{http://stackoverflow.com/questions/26377753/zend-authentication-storage-session-session-validation-failed-any-ideas}
 
 O ZendDevelopersTools possui uma função que quebra o sistema. O link
 acima descreve o problema.
 
-\paragraph{Solução}\label{soluuxe7uxe3o}
+\paragraph{Solução}
 
 Comente a linha 64 do arquivo:
 
@@ -201,30 +195,28 @@ public function attachShared(SharedEventManagerInterface $events)
     //$events->attach($this->identifiers, '*', array($this, 'onCollectEvent'), Profiler::PRIORITY_EVENT_COLLECTOR);
 }
 \end{verbatim}
+\subsection{Criação de entidades (Entities) a partir do banco de dados}
 
-\subsection{Criação de entidades (Entities) a partir do banco de
-dados}\label{criauxe7uxe3o-de-entidades-entities-a-partir-do-banco-de-dados}
+\textbf{Obs.}: esta parte já foi feita, é apenas para documentar.
 
 \begin{verbatim}
 ./vendor/bin/doctrine-module orm:convert-mapping --filter="Usuario" \
 --from-database annotation --namespace="Application\\Entity\\" \
 module/Application/src
 \end{verbatim}
-
 onde \texttt{Usuario} é o nome da tabela a ser gerada.
 
-\subsection{Criação dos \emph{getters} e
-\emph{setters}}\label{criauxe7uxe3o-dos-getters-e-setters}
+\subsection{Criação dos \emph{getters} e \emph{setters}}
+
+\textbf{Obs.}: esta parte já foi feita, é apenas para documentar.
 
 \begin{verbatim}
 ./vendor/bin/doctrine-module orm:generate-entities \
 --filter="Usuario" module/Application/src/
 \end{verbatim}
-
-\subsection{Links úteis}\label{links-uxfateis}
+\subsection{Links úteis}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
-  \url{http://ocramius.github.io/presentations/doctrine2-zf2-introduction/\#/1}
+  \url{http://ocramius.github.io/presentations/doctrine2-zf2-introduction/#/1}
 \end{itemize}
