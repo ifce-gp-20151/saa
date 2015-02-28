@@ -181,7 +181,7 @@ CREATE TABLE aluno (
 
 CREATE TABLE atividade_remunerada (
     id_pessoa bigint NOT NULL,
-    id_profissao varchar( 20 ) NOT NULL,
+    id_profissao bigint NOT NULL,
     fl_ativo boolean,
     salario numeric(10,2)
 );
@@ -365,7 +365,7 @@ CREATE TABLE dados_familiares (
     id bigint NOT NULL,
     nome character varying(255) NOT NULL,
     idade integer NOT NULL,
-    id_profissao varchar(20),
+    id_profissao bigint,
     id_grau_parentesco integer,
     fl_mora boolean NOT NULL
 );
@@ -617,7 +617,7 @@ ALTER SEQUENCE pessoa_id_seq OWNED BY pessoa.id;
 --
 
 CREATE TABLE profissao (
-    id varchar(20) NOT NULL,
+    id bigint NOT NULL,
     descricao character varying(255) NOT NULL
 );
 
