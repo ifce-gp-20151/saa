@@ -181,7 +181,7 @@ CREATE TABLE aluno (
 
 CREATE TABLE atividade_remunerada (
     id_pessoa bigint NOT NULL,
-    id_profissao bigint NOT NULL,
+    id_profissao integer NOT NULL,
     fl_ativo boolean,
     salario numeric(10,2)
 );
@@ -365,7 +365,7 @@ CREATE TABLE dados_familiares (
     id bigint NOT NULL,
     nome character varying(255) NOT NULL,
     idade integer NOT NULL,
-    id_profissao bigint,
+    id_profissao integer,
     id_grau_parentesco integer,
     fl_mora boolean NOT NULL
 );
@@ -617,8 +617,8 @@ ALTER SEQUENCE pessoa_id_seq OWNED BY pessoa.id;
 --
 
 CREATE TABLE profissao (
-    id bigint NOT NULL,
-    descricao character varying(255) NOT NULL
+    id integer NOT NULL,
+    descricao character varying(50) NOT NULL
 );
 
 
@@ -627,12 +627,12 @@ CREATE TABLE profissao (
 -- Name: profissao_id_seq; Type: SEQUENCE; Schema: saa; Owner: -
 --
 
---CREATE SEQUENCE profissao_id_seq
---    START WITH 1
---    INCREMENT BY 1
---    NO MINVALUE
---    NO MAXVALUE
---    CACHE 1;
+CREATE SEQUENCE profissao_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 --
@@ -641,7 +641,7 @@ CREATE TABLE profissao (
 -- Name: profissao_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
 
---ALTER SEQUENCE profissao_id_seq OWNED BY profissao.id;
+ALTER SEQUENCE profissao_id_seq OWNED BY profissao.id;
 
 
 --
@@ -807,7 +807,7 @@ ALTER TABLE ONLY pessoa ALTER COLUMN id SET DEFAULT nextval('pessoa_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: saa; Owner: -
 --
 
---ALTER TABLE ONLY profissao ALTER COLUMN id SET DEFAULT nextval('profissao_id_seq'::regclass);
+ALTER TABLE ONLY profissao ALTER COLUMN id SET DEFAULT nextval('profissao_id_seq'::regclass);
 
 
 --
