@@ -179,7 +179,7 @@ CREATE TABLE aluno (
 -- Name: atividade_remunerada; Type: TABLE; Schema: saa; Owner: -
 --
 
-CREATE TABLE
+CREATE TABLE atividade_remunerada
 (
     id_pessoa bigint NOT NULL,
     id_profissao integer NOT NULL,
