@@ -1,4 +1,4 @@
-﻿--DROP SCHEMA saa CASCADE; 
+﻿--DROP SCHEMA saa CASCADE;
 ---------------------------------------------
 ---- remover acentos
 ---------------------------------------------
@@ -26,7 +26,7 @@ CREATE TABLE saa.temp(Matricula VARCHAR(250),Nome VARCHAR(250),Situacao_Matricul
 
 COPY saa.temp(Matricula,Nome,Situacao_Matricula,Situacao_Periodo,Turma,Nascimento,Renov_Matricula,Sexo,Per_Letivo_Inicial,Curso,Periodo,Turno,Naturalidade,Telefones,E_mail,Tipo_Forma_Ingresso_no_Periodo,Renda_Familiar,Renda_Familiar_Per_Capita,Renda_Familiar_Per_Capita_SIG,Renda_Familiar_Per_Capita_INEP,Escola_de_Origem,Area_Procedência_Escola_Origem,Agrupamento,CPF,Num_de_Identidade,Instituicao,Matriz_Curricular,Nome_do_Pai,Nome_da_Mae,Endereco,Numero,Complemento,Bairro,CEP,Cidade,N_Pasta,Pólo_Municipal,Percentual_Frequencia,Regime_Internato)
 --FROM 'C:\Users\agmedeiros\Documents\POSTGRES\alunos_csv5.csv' WITH (FORMAT CSV, DELIMITER ';', QUOTE '~', NULL '', ENCODING 'UTF-8');
-FROM '/home/lucas/Development/projetos_git/saa/docs/db/migrations/alunos_csv5.csv' WITH (FORMAT CSV, DELIMITER ';', QUOTE '~', NULL '', ENCODING 'UTF-8');
+FROM '/path/to/saa/docs/db/migrations/alunos_csv5.csv' WITH (FORMAT CSV, DELIMITER ';', QUOTE '~', NULL '', ENCODING 'UTF-8');
 
 ---------------------------------------------
 ---- POPULANDO PESSOA
@@ -48,7 +48,7 @@ alter table saa.endereco add column migracao_pessoa bigint;
 ALTER SEQUENCE saa.endereco_id_seq RESTART WITH 1;
 delete from saa.endereco;
 insert into saa.endereco(id_bairro,logradouro,numero,cep,complemento,migracao_pessoa)
-select 
+select
 distinct
 CASE WHEN b.id IS NULL THEN 5827 ELSE b.id END as id_bairro,
 CASE WHEN upper(trim(t.endereco)) IS NULL THEN 'NÃO INFORMADO' ELSE upper(trim(t.endereco)) END,
@@ -56,20 +56,20 @@ CASE WHEN t.numero IS NULL or length(trim(t.numero)) > 10 THEN '0' ELSE trim(t.n
 CASE WHEN upper(trim(replace(t.cep,'-',''))) IS NULL OR length(trim(replace(t.cep,'-',''))) > 10 THEN '0' ELSE upper(trim(replace(t.cep,'-',''))) END,
 CASE WHEN upper(trim(t.complemento)) IS NULL THEN '' ELSE upper(trim(t.complemento)) END,
 p.id
-from saa.temp t 
+from saa.temp t
 inner join saa.pessoa p ON replace(replace(t.cpf,'.',''),'-','') = p.cpf
 inner join saa.cidade c ON (c.descricao = trim(upper(saa.sem_acentos(replace(trim(t.cidade),'- CE','')))))
-left join saa.bairro b ON (trim(replace(replace(trim(b.descricao),'CONJUNTO',''),'PREFEITO','')) like trim(upper(sem_acentos(trim(replace(replace(t.bairro,'Conjunto',''),'Prefeito',''))))) and b.id_cidade = c.id and c.id_uf = 6);
+left join saa.bairro b ON (trim(replace(replace(trim(b.descricao),'CONJUNTO',''),'PREFEITO','')) like trim(upper(saa.sem_acentos(trim(replace(replace(t.bairro,'Conjunto',''),'Prefeito',''))))) and b.id_cidade = c.id and c.id_uf = 6);
 
 ---------------------------------------------
 ---- POPULANDO pessoa_endereco
 ---------------------------------------------
 delete from saa.pessoa_endereco;
 insert into saa.pessoa_endereco(id_pessoa, id_endereco)
-select distinct migracao_pessoa,id from saa.endereco; 
+select distinct migracao_pessoa,id from saa.endereco;
 
 
---SELECT p.id, p.nome, p.cpf, p.rg, p.sexo, e.logradouro, e.numero, e.cep, b.descricao, c.descricao, u.descricao from saa.pessoa p 
+--SELECT p.id, p.nome, p.cpf, p.rg, p.sexo, e.logradouro, e.numero, e.cep, b.descricao, c.descricao, u.descricao from saa.pessoa p
 --inner join saa.pessoa_endereco pe ON pe.id_pessoa = p.id
 --inner join saa.endereco e ON pe.id_endereco = e.id
 --inner join saa.bairro b ON b.id = e.id_bairro
