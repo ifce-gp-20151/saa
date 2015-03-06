@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Agenda
  *
  * @ORM\Table(name="saa.agenda")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\AgendaRepository")
  */
 class Agenda
 {
@@ -69,7 +69,7 @@ class Agenda
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -92,7 +92,7 @@ class Agenda
     /**
      * Get data
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getData()
     {
@@ -115,7 +115,7 @@ class Agenda
     /**
      * Get flOcorreu
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getFlOcorreu()
     {
@@ -138,7 +138,7 @@ class Agenda
     /**
      * Get horaInicio
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHoraInicio()
     {
@@ -161,7 +161,7 @@ class Agenda
     /**
      * Get horaFim
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHoraFim()
     {
@@ -194,10 +194,12 @@ class Agenda
     /**
      * Get idAcompanhamento
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdAcompanhamento()
     {
         return $this->idAcompanhamento;
     }
+
+
 }
