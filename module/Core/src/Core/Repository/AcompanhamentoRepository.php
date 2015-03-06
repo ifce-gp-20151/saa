@@ -43,4 +43,5 @@ class AcompanhamentoRepository extends EntityRepository {
         $stmt->execute();
         return $stmt->fetch();
     }
+
 }
