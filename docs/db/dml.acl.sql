@@ -32,6 +32,7 @@ INSERT INTO saa.acl_controllers(id, controller) VALUES ( 6, 'Profissao');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 7, 'Acompanhamento');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 8, 'AcompanhamentoIndividual');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 9, 'Aluno');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 10, 'Agendamento');
 
 --
 -- Actions
@@ -89,6 +90,11 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 30, 1,  9,  6);--aluno/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 31, 1,  9,  7);--aluno/deletar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 32, 1,  9, 17);--aluno/ajax-buscar-curso
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 33, 3,  10,  1);--psicologia/acompanhamento/agendamento/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 34, 3,  10,  5);--psicologia/acompanhamento/agendamento/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 35, 3,  10,  6);--psicologia/acompanhamento/agendamento/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 36, 3,  10,  7);--psicologia/acompanhamento/agendamento/deletar
+
 
 --
 -- Privileges
@@ -144,3 +150,7 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 29, 4, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 30, 4, true);--aluno/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 31, 4, true);--aluno/deletar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 32, 4, true);--aluno/ajax-buscar-curso
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 33, 4, true);--psicologia/agendamento/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 34, 4, true);--psicologia/agendamento/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 35, 4, true);--psicologia/agendamento/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 36, 4, true);--psicologia/agendamento/deletar

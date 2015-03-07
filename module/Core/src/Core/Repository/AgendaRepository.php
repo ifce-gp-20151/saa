@@ -19,4 +19,14 @@ class AgendaRepository extends EntityRepository {
       return $stmt->fetchAll();
     }
 
+    public function listar() {
+      $stmt = $this->getEntityManager()
+                 ->getConnection()
+                 ->prepare("SELECT TO_CHAR( ag.data, 'DD/MM/YYYY' ) as data, ag.hora_inicio,
+                    ag.hora_fim
+                    FROM saa.agenda ag");
+      $stmt->execute();
+      return $stmt->fetchAll();
+    }
+
 }
