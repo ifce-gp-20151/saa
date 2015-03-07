@@ -7,13 +7,16 @@ use Doctrine\ORM\EntityRepository;
 class AgendaRepository extends EntityRepository {
 
     public function listarPorAcompanhamento($idAcompanhamento) {
-        $dql = "SELECT ag.data, ag.horaInicio as hora_inicio, ag.horaFim as hora_fim
-        FROM \Core\Entity\Agenda ag
-        JOIN ag.idAcompanhamento a";
-
-        $query = $this->getEntityManager()->createQuery($dql);
-        //$query->setParameter(1, $id);
-        return $query->getScalarResult();
+      $stmt = $this->getEntityManager()
+                 ->getConnection()
+                 ->prepare("SELECT TO_CHAR( ag.data, 'DD/MM/YYYY' ) as data, ag.hora_inicio,
+                    ag.hora_fim
+                    FROM saa.agenda ag
+                    INNER JOIN saa.agenda_acompanhamento aa on ag.id = aa.id_agenda
+                    WHERE aa.id_acompanhamento = :id");
+      $stmt->bindValue('id', $idAcompanhamento);
+      $stmt->execute();
+      return $stmt->fetchAll();
     }
 
 }
