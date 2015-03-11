@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EstadoCivil
  *
  * @ORM\Table(name="saa.estado_civil")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\EstadoCivilRepository")
  */
 class EstadoCivil
 {
@@ -34,7 +34,7 @@ class EstadoCivil
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +57,7 @@ class EstadoCivil
     /**
      * Get descricao
      *
-     * @return string 
+     * @return string
      */
     public function getDescricao()
     {

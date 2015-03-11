@@ -1,0 +1,62 @@
+<?php
+    $this->headLink()->prependStylesheet($this->basePath() . '/lib/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
+
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/momentjs/moment-with-locales.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/jquery-maskedinput/jquery.maskedinput.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/js/application/partials/pessoa/salvar.js');
+?>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li><a href="<?php echo $this->url('servidor') ?>">Servidor</a></li>
+    <li class="active"><?php echo $title ?></li>
+</ol>
+
+<h4><?php echo $title ?></h4><hr/>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formRow($form->get('id')); ?>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('siape')); ?>
+            <?php echo $this->formInput($form->get('siape')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('siape')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('id_cargo')); ?>
+            <?php echo $this->formSelect($form->get('id_cargo')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('id_cargo')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<?php echo $this->partial('partials/pessoa/salvar.phtml', array(
+    'form' => $form,
+)); ?>
+
+<div class="row">
+    <div class="col-md-6">
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+<?php
+    echo $this->form()->closeTag();
+?>

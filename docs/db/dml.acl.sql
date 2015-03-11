@@ -33,6 +33,7 @@ INSERT INTO saa.acl_controllers(id, controller) VALUES ( 7, 'Acompanhamento');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 8, 'AcompanhamentoIndividual');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 9, 'Aluno');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 10, 'Agendamento');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 11, 'Servidor');
 
 --
 -- Actions
@@ -90,11 +91,14 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 30, 1,  9,  6);--aluno/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 31, 1,  9,  7);--aluno/deletar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 32, 1,  9, 17);--aluno/ajax-buscar-curso
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 33, 3,  10,  1);--psicologia/acompanhamento/agendamento/index
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 34, 3,  10,  5);--psicologia/acompanhamento/agendamento/criar
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 35, 3,  10,  6);--psicologia/acompanhamento/agendamento/editar
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 36, 3,  10,  7);--psicologia/acompanhamento/agendamento/deletar
-
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 33, 3, 10,  1);--psicologia/acompanhamento/agendamento/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 34, 3, 10,  5);--psicologia/acompanhamento/agendamento/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 35, 3, 10,  6);--psicologia/acompanhamento/agendamento/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 36, 3, 10,  7);--psicologia/acompanhamento/agendamento/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 37, 5, 11,  1);--admin/servidor/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 38, 5, 11,  5);--admin/servidor/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 39, 5, 11,  6);--admin/servidor/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 40, 5, 11,  7);--admin/servidor/deletar
 
 --
 -- Privileges
@@ -132,6 +136,10 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 16, 3, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 17, 3, true);--admin/profissao/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 18, 3, true);--admin/profissao/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 19, 3, true);--admin/profissao/deletar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 37, 3, true);--admin/servidor/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 38, 3, true);--admin/servidor/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 39, 3, true);--admin/servidor/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 40, 3, true);--admin/servidor/deletar
 
 
 --

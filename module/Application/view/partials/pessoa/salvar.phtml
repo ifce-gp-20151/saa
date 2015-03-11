@@ -1,0 +1,60 @@
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('nome')); ?>
+            <?php echo $this->formInput($form->get('nome')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('nome')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('cpf')); ?>
+            <?php echo $this->formInput($form->get('cpf')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('cpf')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('rg')); ?>
+            <?php echo $this->formInput($form->get('rg')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('rg')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('sexo')); ?>
+            <?php echo $this->formSelect($form->get('sexo')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('sexo')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('dt_nascimento')); ?>
+            <?php echo $this->formInput($form->get('dt_nascimento')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('dt_nascimento')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('id_estado_civil')); ?>
+            <?php echo $this->formSelect($form->get('id_estado_civil')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('id_estado_civil')); ?>
+            </div>
+        </div>
+    </div>
+</div>

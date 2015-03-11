@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Cargo
  *
  * @ORM\Table(name="saa.cargo")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\CargoRepository")
  */
 class Cargo
 {
@@ -34,7 +34,7 @@ class Cargo
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +57,7 @@ class Cargo
     /**
      * Get descricao
      *
-     * @return string 
+     * @return string
      */
     public function getDescricao()
     {

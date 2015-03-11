@@ -20,6 +20,21 @@ return array(
                     ),
                 ),
             ),
+            'servidor' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/servidor[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Servidor',
+                        'action'     => 'index',
+                        'module'     => 'admin',
+                    ),
+                ),
+            ),
             'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -58,6 +73,7 @@ return array(
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Admin\Controller\Profissao' => 'Admin\Controller\ProfissaoController',
+            'Admin\Controller\Servidor' => 'Admin\Controller\ServidorController',
         ),
     ),
     'view_manager' => array(
