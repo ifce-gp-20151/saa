@@ -18,7 +18,7 @@ class Agenda
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="agenda_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="saa.agenda_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -39,14 +39,14 @@ class Agenda
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="hora_inicio", type="datetime", nullable=true)
+     * @ORM\Column(name="hora_inicio", type="time", nullable=true)
      */
     private $horaInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="hora_fim", type="datetime", nullable=true)
+     * @ORM\Column(name="hora_fim", type="time", nullable=true)
      */
     private $horaFim;
 
@@ -201,5 +201,20 @@ class Agenda
         return $this->idAcompanhamento;
     }
 
+    public function exchangeArray($data) {
+
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+        //$this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
+        $this->data = (!empty($data['data'])) ? \DateTime::createFromFormat('d/m/Y', $data['data']) : null;
+        $this->flOcorreu = (!empty($data['fl_ocorreu'])) ? $data['fl_ocorreu'] : false;
+        $this->horaInicio = (!empty($data['hora_inicio'])) ? \DateTime::createFromFormat('H:i', $data['hora_inicio']) : null;
+        $this->horaFim = (!empty($data['hora_fim'])) ? \DateTime::createFromFormat('H:i', $data['hora_fim']) : null;
+        //$this->id_servidor = (!empty($data['id_servidor'])) ? $data['id_servidor'] : null;
+
+    }
+
+    public function getArrayCopy() {
+        return get_object_vars($this);
+    }
 
 }

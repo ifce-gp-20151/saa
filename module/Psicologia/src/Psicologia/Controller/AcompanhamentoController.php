@@ -58,7 +58,7 @@ class AcompanhamentoController extends AbstractActionController {
                 }
 
                 $session = $this->getServiceLocator()->get('Session');
-				$user = $session->offsetGet('user');
+				        $user = $session->offsetGet('user');
                 $servidor = $this->getEntityManager()->getRepository('Core\Entity\Servidor')
                     ->findOneBy(array('id' => $user->id));
 
@@ -82,10 +82,10 @@ class AcompanhamentoController extends AbstractActionController {
         }
 
         $viewModel = new ViewModel($params);
-		$viewModel->setVariable('title', 'Novo Acompanhamento');
-		$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
+    		$viewModel->setVariable('title', 'Novo Acompanhamento');
+    		$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
 
-		return $viewModel;
+    		return $viewModel;
     }
 
     public function ajaxBuscarAlunoAction() {

@@ -5,13 +5,14 @@ namespace Psicologia;
 return array(
     'router' => array(
         'routes' => array(
-            'professor' => array(
+            'agendamento' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/psicologia/agendamento[/][:action][/:id]',
+                    'route'    => '/psicologia/agendamento[/][:action][/:id][/id_acompanhamento/:id_acompanhamento]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
+                        'id_acompanhamento' => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Psicologia\Controller\Agendamento',
