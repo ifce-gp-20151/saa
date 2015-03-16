@@ -1,0 +1,73 @@
+<?php
+    $this->headLink()->prependStylesheet($this->basePath() . '/lib/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css');
+
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/momentjs/moment-with-locales.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/jquery-maskedinput/jquery.maskedinput.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/js/psicologia/agendamento/salvar.js');
+?>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li><a href="<?php echo $this->url('psicologia') ?>">Psicologia</a></li>
+    <li><a href="<?php echo $this->url('agendamento') ?>">Agendamento</a></li>
+    <li class="active"><?php echo $title ?></li>
+</ol>
+
+<h4><?php echo $title ?></h4><hr/>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formRow($form->get('id')); ?>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('data')); ?>
+            <?php echo $this->formInput($form->get('data')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('data')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('hora_inicio')); ?>
+            <?php echo $this->formInput($form->get('hora_inicio')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('hora_inicio')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('hora_fim')); ?>
+            <?php echo $this->formInput($form->get('hora_fim')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('hora_fim')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+<?php
+    echo $this->form()->closeTag();
+?>
