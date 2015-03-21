@@ -35,6 +35,21 @@ return array(
                     ),
                 ),
             ),
+            'cargo' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/cargo[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Cargo',
+                        'action'     => 'index',
+                        'module'     => 'admin',
+                    ),
+                ),
+            ),
             'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -74,6 +89,7 @@ return array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Admin\Controller\Profissao' => 'Admin\Controller\ProfissaoController',
             'Admin\Controller\Servidor' => 'Admin\Controller\ServidorController',
+            'Admin\Controller\Cargo' => 'Admin\Controller\CargoController',
         ),
     ),
     'view_manager' => array(

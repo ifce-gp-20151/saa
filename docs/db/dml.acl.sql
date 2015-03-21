@@ -34,6 +34,7 @@ INSERT INTO saa.acl_controllers(id, controller) VALUES ( 8, 'AcompanhamentoIndiv
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 9, 'Aluno');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 10, 'Agendamento');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 11, 'Servidor');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 12, 'Cargo');
 
 --
 -- Actions
@@ -99,6 +100,10 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 38, 5, 11,  5);--admin/servidor/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 39, 5, 11,  6);--admin/servidor/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 40, 5, 11,  7);--admin/servidor/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 41, 5, 12,  1);--admin/cargo/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 42, 5, 12,  5);--admin/cargo/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 43, 5, 12,  6);--admin/cargo/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 44, 5, 12,  7);--admin/cargo/deletar
 
 --
 -- Privileges
@@ -140,7 +145,10 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 37, 3, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 38, 3, true);--admin/servidor/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 39, 3, true);--admin/servidor/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 40, 3, true);--admin/servidor/deletar
-
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 41, 3, true);--admin/cargo/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 42, 3, true);--admin/cargo/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 43, 3, true);--admin/cargo/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 44, 3, true);--admin/cargo/deletar
 
 --
 -- psicologo

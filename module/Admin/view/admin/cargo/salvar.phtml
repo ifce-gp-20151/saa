@@ -1,0 +1,43 @@
+<?php
+    //$this->headScript()->appendFile($this->basePath() . '/js/admin/cargo/salvar.js');
+?>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li><a href="<?php echo $this->url('admin') ?>">Painel Adminstrativo</a></li>
+    <li><a href="<?php echo $this->url('cargo') ?>">Cargo</a></li>
+    <li class="active"><?php echo $title ?></li>
+</ol>
+
+<h4><?php echo $title ?></h4><hr/>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formRow($form->get('id')); ?>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('descricao')); ?>
+            <?php echo $this->formInput($form->get('descricao')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('descricao')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+<?php
+    echo $this->form()->closeTag();
+?>
