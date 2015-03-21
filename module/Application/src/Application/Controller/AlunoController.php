@@ -23,9 +23,18 @@ class AlunoController extends ActionController {
     }
 
     public function indexAction() {
+        $pagina = $this->params()->fromQuery('pagina', 1);
+		$paginacao = $this->getServiceLocator()->get('Core\Controller\Paginacao');
+		$offset = $paginacao->getOffset($pagina);
+        $restricao = $this->params()->fromQuery('restricao', null);
+
         $session = $this->getServiceLocator()->get('Session');
         $user = $session->offsetGet('user');
-        return new ViewModel(array('list' => $this->getEntityManager()->getRepository('Core\Entity\Aluno')->listar(),));
+        return new ViewModel(array(
+            'list' => $this->getEntityManager()->getRepository('Core\Entity\Aluno')->listar($restricao, $offset),
+            'pagina' => $pagina,
+            'restricao' => $restricao,
+        ));
     }
 
     public function ajaxBuscarCursoAction() {
