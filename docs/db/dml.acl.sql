@@ -136,6 +136,10 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 16, 3, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 17, 3, true);--admin/profissao/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 18, 3, true);--admin/profissao/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 19, 3, true);--admin/profissao/deletar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 28, 3, true);--aluno/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 29, 3, true);--aluno/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 30, 3, true);--aluno/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 31, 3, true);--aluno/deletar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 37, 3, true);--admin/servidor/index
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 38, 3, true);--admin/servidor/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 39, 3, true);--admin/servidor/editar

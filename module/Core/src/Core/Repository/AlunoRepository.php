@@ -22,15 +22,31 @@ class AlunoRepository extends EntityRepository {
         return null;
     }
 
-    public function listar() {
-      $dql = "SELECT a.matricula, p.nome, c.descricao as curso, pe.descricao as periodo, a.situacaoEscolar
-              FROM Core\Entity\Aluno a
-              JOIN a.idPessoa p
-              JOIN a.idCurso c
-              JOIN c.idPeriodo pe
-             ";
-      $query = $this->getEntityManager()->createQuery( $dql );
-      return $query->getResult();
+    public function listar($restricao = null, $offset = 0) {
+        $params = array();
 
+        $dql = "SELECT a.matricula, p.nome, c.descricao as curso, pe.descricao as periodo, a.situacaoEscolar
+            FROM Core\Entity\Aluno a
+            JOIN a.idPessoa p
+            JOIN a.idCurso c
+            JOIN c.idPeriodo pe";
+
+        if (! empty($restricao)) {
+            if (preg_match('/\d+/', $restricao)) {
+                $dql .= ' WHERE a.matricula = ?1 ';
+                $params[1] = $restricao;
+            } else {
+                $dql .= ' WHERE p.nome LIKE UPPER(?1) ';
+                $params[1] = '%' . $restricao . '%';
+            }
+        }
+
+        $dql .= ' ORDER BY p.nome ';
+
+        $query = $this->getEntityManager()->createQuery( $dql );
+        $query->setParameters($params);
+        $query->setMaxResults(10);
+        $query->setFirstResult($offset);
+        return $query->getResult();
     }
 }
