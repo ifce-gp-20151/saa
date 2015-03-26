@@ -56,6 +56,8 @@ INSERT INTO saa.acl_actions(id, action) VALUES ( 14, 'ajax-buscar-aluno');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 15, 'detalhes');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 16, 'ajax-salvar');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 17, 'ajax-buscar-curso');
+INSERT INTO saa.acl_actions(id, action) VALUES ( 18, 'criar-acompanhamento-agendado');
+
 
 --
 -- Resources
@@ -100,10 +102,11 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 38, 5, 11,  5);--admin/servidor/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 39, 5, 11,  6);--admin/servidor/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 40, 5, 11,  7);--admin/servidor/deletar
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 41, 5, 12,  1);--admin/cargo/index
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 42, 5, 12,  5);--admin/cargo/criar
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 43, 5, 12,  6);--admin/cargo/editar
-INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 44, 5, 12,  7);--admin/cargo/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 41, 3, 10,  18);--psicologia/acompanhamento/agendamento/criar-acompanhamento-agendado
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 42, 5, 12,  1);--admin/cargo/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 43, 5, 12,  5);--admin/cargo/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 44, 5, 12,  6);--admin/cargo/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 45, 5, 12,  7);--admin/cargo/deletar
 
 --
 -- Privileges
@@ -149,10 +152,10 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 37, 3, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 38, 3, true);--admin/servidor/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 39, 3, true);--admin/servidor/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 40, 3, true);--admin/servidor/deletar
-INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 41, 3, true);--admin/cargo/index
-INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 42, 3, true);--admin/cargo/criar
-INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 43, 3, true);--admin/cargo/editar
-INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 44, 3, true);--admin/cargo/deletar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 42, 3, true);--admin/cargo/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 43, 3, true);--admin/cargo/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 44, 3, true);--admin/cargo/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 45, 3, true);--admin/cargo/deletar
 
 --
 -- psicologo
@@ -174,3 +177,4 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 33, 4, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 34, 4, true);--psicologia/agendamento/criar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 35, 4, true);--psicologia/agendamento/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 36, 4, true);--psicologia/agendamento/deletar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 41, 4, true);--psicologia/acompanhamento/agendamento/criar-acompanhamento-agendado

@@ -42,7 +42,7 @@ class AgendamentoForm extends Form {
     }
 
     protected function _hora_inicio() {
-        $e = new Element\Text('hora_inicio');
+        $e = new Element\Text('horaInicio');
         $e->setLabel('Hora Início:');
         $e->setAttribute('id', 'hora_inicio');
         $e->setAttribute('class', 'form-control time');
@@ -51,7 +51,7 @@ class AgendamentoForm extends Form {
     }
 
     protected function _hora_fim() {
-        $e = new Element\Text('hora_fim');
+        $e = new Element\Text('horaFim');
         $e->setLabel('hora fim:');
         $e->setAttribute('id', 'hora_fim');
         $e->setAttribute('class', 'form-control time');

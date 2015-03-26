@@ -28,7 +28,7 @@ echo $this->form()->openTag($form);
         </div>
     </div>
 
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-2 col-md-2">
         <div class="form-group">
             <?php echo $this->formLabel($form->get('data')); ?>
             <?php echo $this->formInput($form->get('data')); ?>
@@ -40,24 +40,21 @@ echo $this->form()->openTag($form);
 </div>
 
 <div class="row">
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-6 col-md-2">
         <div class="form-group">
-            <?php echo $this->formLabel($form->get('hora_inicio')); ?>
-            <?php echo $this->formInput($form->get('hora_inicio')); ?>
+            <?php echo $this->formLabel($form->get('horaInicio')); ?>
+            <?php echo $this->formInput($form->get('horaInicio')); ?>
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('hora_inicio')); ?>
+                <?php echo $this->formElementErrors($form->get('horaInicio')); ?>
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-2 col-md-2">
         <div class="form-group">
-            <?php echo $this->formLabel($form->get('hora_fim')); ?>
-            <?php echo $this->formInput($form->get('hora_fim')); ?>
+            <?php echo $this->formLabel($form->get('horaFim')); ?>
+            <?php echo $this->formInput($form->get('horaFim')); ?>
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('hora_fim')); ?>
+                <?php echo $this->formElementErrors($form->get('horaFim')); ?>
             </div>
         </div>
     </div>

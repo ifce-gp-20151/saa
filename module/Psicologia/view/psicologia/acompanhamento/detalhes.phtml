@@ -303,7 +303,24 @@
                     <td><?php echo $item["hora_inicio"]; ?></td>
                     <td><?php echo $item["hora_fim"]; ?></td>
                     <td>
-
+                        <div class="btn-group">
+                            <a href="<?php echo $this->url('agendamento', array(
+                                'action' => 'criarAcompanhamentoAgendado',
+                                'id' => $item["id"],
+                                'id_acompanhamento' => $id,
+                            )) ?>" class="btn btn-default">
+                                <i class="fa fa-edit"></i> Realizar
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="<?php echo $this->url('agendamento', array(
+                                'action' => 'editar',
+                                'id' => $item["id"],
+                                'id_acompanhamento' => $id,
+                            )) ?>" class="btn btn-default">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -21,19 +21,39 @@ class AgendamentoFilter implements InputFilterAwareInterface {
             $factory = new InputFactory();
 
             /* criar filtros */
+                        
             $inputFilter->add($factory->createInput(array(
                 'name' => 'data',
                 'required' => true,
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name' => 'hora_inicio',
+                'name' => 'horaInicio',
                 'required' => true,
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name' => 'hora_fim',
+                'name' => 'horaFim',
                 'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'Callback',
+                        'options' => array(
+                            'messages' => array(
+                                \Zend\Validator\Callback::INVALID_VALUE => 'A hora de fim deve ser maior que a hora de início!',
+                            ),
+                            'callback' => function($value, $context=array()) {
+                                // value of this input
+                                $hr_fim = $value;
+                                // value of input to check against from context
+                                $hr_ini = $context['horaInicio'];
+                                // compare times, eg..
+                                $isValid = $hr_ini < $hr_fim;
+                                return $isValid;
+                            },
+                        ),
+                    ),
+                ),
             )));
 
             $this->_inputFilter = $inputFilter;
