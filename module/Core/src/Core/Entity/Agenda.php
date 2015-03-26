@@ -3,12 +3,14 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
  * Agenda
  *
  * @ORM\Table(name="saa.agenda")
  * @ORM\Entity(repositoryClass="Core\Repository\AgendaRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Agenda
 {
@@ -65,6 +67,19 @@ class Agenda
         $this->idAcompanhamento = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @ORM\PostLoad
+     */
+    public function postLoad( LifecycleEventArgs $event ) {
+        $obj = $event->getObject();
+
+        if( $obj instanceof \Core\Entity\Agenda ) {
+            $this->data = $obj->data->format( "d/m/Y" );
+            $this->horaInicio = $obj->horaInicio->format( "H:i" );
+            $this->horaFim = $obj->horaFim->format( "H:i" );
+        }
+
+    }
 
     /**
      * Get id
@@ -204,12 +219,10 @@ class Agenda
     public function exchangeArray($data) {
 
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
-        //$this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
         $this->data = (!empty($data['data'])) ? \DateTime::createFromFormat('d/m/Y', $data['data']) : null;
         $this->flOcorreu = (!empty($data['fl_ocorreu'])) ? $data['fl_ocorreu'] : false;
-        $this->horaInicio = (!empty($data['hora_inicio'])) ? \DateTime::createFromFormat('H:i', $data['hora_inicio']) : null;
-        $this->horaFim = (!empty($data['hora_fim'])) ? \DateTime::createFromFormat('H:i', $data['hora_fim']) : null;
-        //$this->id_servidor = (!empty($data['id_servidor'])) ? $data['id_servidor'] : null;
+        $this->horaInicio = (!empty($data['horaInicio'])) ? \DateTime::createFromFormat('H:i', $data['horaInicio']) : null;
+        $this->horaFim = (!empty($data['horaFim'])) ? \DateTime::createFromFormat('H:i', $data['horaFim']) : null;
 
     }
 

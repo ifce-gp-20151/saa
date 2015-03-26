@@ -9,13 +9,13 @@ class AcompanhamentoIndividualRepository extends EntityRepository {
     public function buscarNumeroProximoEncontro($id_acompanhamento) {
         $stmt = $this->getEntityManager()
                    ->getConnection()
-                   ->prepare("SELECT coalesce(max(numero_encontro), 1) AS max
+                   ->prepare("SELECT coalesce(max(numero_encontro), 0) + 1 AS max
             FROM saa.acompanhamento_individual WHERE id_acompanhamento = :id_acompanhamento");
         $stmt->bindValue('id_acompanhamento', $id_acompanhamento);
         $stmt->execute();
         return $stmt->fetch();
     }
-    
+
     public function listarPor($id_acompanhamento) {
         $dql = "SELECT ai.id, ai.numeroEncontro, ai.dataCriacao
             FROM Core\Entity\AcompanhamentoIndividual ai
