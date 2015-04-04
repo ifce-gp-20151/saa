@@ -136,6 +136,9 @@ return array(
                 return new Auth($dbAdapter);
             },
         ),
+        'invokables' => array(
+            'Application\Service\Crypto' => 'Application\Service\Crypto',
+        ),
     ),
     'translator' => array(
         'locale' => 'pt_BR',

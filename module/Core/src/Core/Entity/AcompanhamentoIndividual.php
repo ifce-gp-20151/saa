@@ -55,6 +55,13 @@ class AcompanhamentoIndividual
     private $dataCriacao;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="passphrase", type="string", nullable=false)
+     */
+    private $passphrase;
+
+    /**
      * @ORM\PrePersist
      */
     public function prePersist() {
@@ -138,6 +145,26 @@ class AcompanhamentoIndividual
     public function getIdAcompanhamento()
     {
         return $this->idAcompanhamento;
+    }
+
+    /**
+     * Set passphrase
+     *
+     * @param string $passphrase
+     * @return AcompanhamentoIndividual
+     */
+    public function setPassphrase($passphrase) {
+        $this->passphrase = $passphrase;
+        return $this;
+    }
+
+    /**
+     * Get passphrase
+     *
+     * @return string
+     */
+    public function getPassphrase() {
+        return $this->passphrase;
     }
 
     public function exchangeArray($data) {

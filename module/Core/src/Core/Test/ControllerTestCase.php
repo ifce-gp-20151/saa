@@ -1,12 +1,15 @@
 <?php
-
 namespace Core\Test;
 
 use Zend\Http\Request;
+use Zend\Http\Response;
+use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
+use Zend\View\Renderer\PhpRenderer;
+use Zend\View\Resolver;
 
-abstract class ControllerTestCase extends TestCase {
-
+abstract class ControllerTestCase extends TestCase
+{
     /**
      * The ActionController we are testing
      *
@@ -56,14 +59,12 @@ abstract class ControllerTestCase extends TestCase {
      * @var string
      */
     protected $controllerRoute;
-    
-    protected $pluginManager;
-    public $pluginManagerPlugins = array();
 
-    public function setup() {
+    public function setup()
+    {
         parent::setup();
         $this->controller = $this->serviceManager->get($this->controllerFQDN);
-        $this->request = new Request();
+        $this->request    = new Request();
         $this->routeMatch = new RouteMatch(array(
             'router' => array(
                 'routes' => array(
@@ -84,7 +85,8 @@ abstract class ControllerTestCase extends TestCase {
         );
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         parent::tearDown();
         unset($this->controller);
         unset($this->request);

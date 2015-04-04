@@ -1,22 +1,22 @@
 {
-   "name": "ifce-gp-20151/saa",
-   "description": "Sistema de Apoio ao Aluno.",
-   "license": "MIT",
-   "keywords": [
-      "framework",
-      "zf2"
-   ],
-   "homepage": "https://github.com/ifce-gp-20151/saa",
-   "require": {
-      "php": ">=5.3.3",
-      "zendframework/zendframework": "2.*",
-      "phpunit/phpunit": "3.7.*",
-      "sebastian/environment": "1.0.*@dev",
-      "zendframework/zftool": "dev-master",
-      "dino/dompdf-module": "dev-master",
-      "doctrine/doctrine-orm-module": "0.*",
-      "zendframework/zend-developer-tools": "dev-master",
-      "ocramius/ocra-service-manager": "~2.1",
-      "ocramius/generated-hydrator": "~1.1"
-   }
+    "name": "ifce-gp-20151/saa",
+    "description": "Sistema de Apoio ao Aluno.",
+    "license": "MIT",
+    "keywords": [
+        "framework",
+        "zf2"
+    ],
+    "homepage": "https://github.com/ifce-gp-20151/saa",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*",
+        "phpunit/phpunit": "3.7.*",
+        "sebastian/environment": "1.0.*@dev",
+        "zendframework/zftool": "dev-master",
+        "dino/dompdf-module": "dev-master",
+        "doctrine/doctrine-orm-module": "0.*",
+        "zendframework/zend-developer-tools": "dev-master",
+        "ocramius/ocra-service-manager": "~2.1",
+        "ocramius/generated-hydrator": "~1.1"
+    }
 }
