@@ -24,45 +24,35 @@ class AlunoFilter implements InputFilterAwareInterface {
             $inputFilter->add($factory->createInput(array(
                 'name' => 'matricula',
                 'required' => true,
-                // TODO: permitir somente números maiores que zero.
-                // Colocando apenas o filter Int, ele converte null para zero
-                // e o formulário não é validado corretamente.
-                /*'filters' => array(
-                    array('name' => 'Int'),
-                ),*/
+                'filters' => array(
+                    array('name' => 'Digits'),
+                ),
             )));
 
             $inputFilter->add($factory->createInput(array(
                 'name' => 'id_curso',
                 'required' => true,
-                // TODO: permitir somente números maiores que zero.
-                // Colocando apenas o filter Int, ele converte null para zero
-                // e o formulário não é validado corretamente.
-                /*'filters' => array(
-                    array('name' => 'Int'),
-                ),*/
+                'filters' => array(
+                    array('name' => 'Digits'),
+                ),
             )));
-
+            
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'cpf',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'Digits'),
+                ),
+            )));
+			
             $inputFilter->add($factory->createInput(array(
                 'name' => 'situacao_escolar',
                 'filters' => array(
                   array('name' => 'StripTags'),
                   array('name' => 'StringTrim'),
-        ),
+        			),
             )));
-
-            $inputFilter->add($factory->createInput(array(
-                'name' => 'id_pessoa',
-                'required' => true,
-                // TODO: permitir somente números maiores que zero.
-                // Colocando apenas o filter Int, ele converte null para zero
-                // e o formulário não é validado corretamente.
-                /*'filters' => array(
-                    array('name' => 'Int'),
-                ),*/
-            )));
-
-
+			
             $this->_inputFilter = $inputFilter;
         }
         return $this->_inputFilter;

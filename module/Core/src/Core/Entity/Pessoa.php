@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="saa.pessoa", uniqueConstraints={@ORM\UniqueConstraint(name="pessoa_cpf_key", columns={"cpf"})}, indexes={@ORM\Index(name="IDX_1CDFAB82D7E358F6", columns={"id_estado_civil"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Pessoa
 {
@@ -18,7 +19,7 @@ class Pessoa
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="pessoa_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="saa.pessoa_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -326,7 +327,7 @@ class Pessoa
      * @param \Core\Entity\DadosFamiliares $idFamiliares
      * @return Pessoa
      */
-    public function addIdFamiliare(\Core\Entity\DadosFamiliares $idFamiliares)
+    public function addIdFamiliares(\Core\Entity\DadosFamiliares $idFamiliares)
     {
         $this->idFamiliares[] = $idFamiliares;
 
@@ -338,7 +339,7 @@ class Pessoa
      *
      * @param \Core\Entity\DadosFamiliares $idFamiliares
      */
-    public function removeIdFamiliare(\Core\Entity\DadosFamiliares $idFamiliares)
+    public function removeIdFamiliares(\Core\Entity\DadosFamiliares $idFamiliares)
     {
         $this->idFamiliares->removeElement($idFamiliares);
     }
@@ -418,4 +419,31 @@ class Pessoa
     {
         return $this->idEndereco;
     }
+    
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function upcase() {
+        $this->nome = mb_strtoupper($this->nome, 'UTF-8');
+    }
+    
+    public function exchangeArray($data) {
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+        $this->nome = (!empty($data['nome'])) ? $data['nome'] : null;
+        $this->cpf = (!empty($data['cpf'])) ? $data['cpf'] : null;
+        $this->rg = (!empty($data['rg'])) ? $data['rg'] : null;
+        $this->sexo = (!empty($data['sexo'])) ? $data['sexo'] : null;
+        $this->dtNascimento = (!empty($data['dt_nascimento'])) ? \DateTime::createFromFormat('d/m/Y', $data['dt_nascimento']) : null;
+        //idEstadoCivil
+        //idProfissao
+        //idFamiliares
+        //idContato
+        //idEndereco
+    }
+
+    public function getArrayCopy() {
+        return get_object_vars($this);
+    }
 }
+

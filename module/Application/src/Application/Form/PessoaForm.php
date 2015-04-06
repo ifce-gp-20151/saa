@@ -50,7 +50,7 @@ abstract class PessoaForm extends Form {
 
     protected function _rg() {
         $e = new Element\Text('rg');
-        $e->setLabel('RG:');
+        $e->setLabel('* RG:');
         $e->setAttribute('id', 'rg');
         $e->setAttribute('class', 'form-control');
 
@@ -59,7 +59,7 @@ abstract class PessoaForm extends Form {
 
     protected function _sexo() {
         $e = new Element\Select('sexo');
-        $e->setLabel('Sexo:');
+        $e->setLabel('* Sexo:');
         $e->setAttribute('id', 'sexo');
         $e->setAttribute('class', 'form-control');
 
