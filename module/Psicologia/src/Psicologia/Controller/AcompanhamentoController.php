@@ -76,16 +76,16 @@ class AcompanhamentoController extends AbstractActionController {
             }
         } else {
             $matricula = $this->params()->fromQuery('matricula');
-            if ($matricula > 0) {
+            if (preg_match('/^\d+$/', $matricula)) {
                 $form->get('matricula')->setValue($matricula);
             }
         }
 
         $viewModel = new ViewModel($params);
-    		$viewModel->setVariable('title', 'Novo Acompanhamento');
-    		$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
+    	$viewModel->setVariable('title', 'Novo Acompanhamento');
+    	$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
 
-    		return $viewModel;
+    	return $viewModel;
     }
 
     public function ajaxBuscarAlunoAction() {
@@ -94,12 +94,13 @@ class AcompanhamentoController extends AbstractActionController {
         if ($request->isPost()) {
             $matricula = $this->params()->fromPost('matricula');
             try {
-                $aluno = $this->getEntityManager()->getRepository('Core\Entity\Aluno')->ajaxFindByMatricula($matricula);
+                $aluno = $this->getEntityManager()->getRepository('Core\Entity\Aluno')
+                    ->ajaxFindByMatricula($matricula);
                 if ($aluno) {
                     $params['aluno'] = $aluno;
                     $params['ok'] = true;
                 } else {
-                    $params['error'] = sprintf('Aluno com matrícula %d não encontrado.', $matricula);
+                    $params['error'] = sprintf('Aluno com matrícula %s não encontrado.', $matricula);
                 }
             } catch (\Exception $e) {
                 $params['error'] = 'Ocorreu um erro ao buscar. Detalhes: ' . $e->getTraceAsString();

@@ -24,14 +24,8 @@ class AcompanhamentoFilter implements InputFilterAwareInterface {
             $inputFilter->add($factory->createInput(array(
                 'name' => 'matricula',
                 'required' => true,
-                // TODO: permitir somente números maiores que zero.
-                // Colocando apenas o filter Int, ele converte null para zero
-                // e o formulário não é validado corretamente.
-                /*'filters' => array(
-                    array('name' => 'Int'),
-                ),*/
             )));
-            
+
             $inputFilter->add($factory->createInput(array(
                 'name' => 'motivo',
                 'required' => true,
@@ -40,7 +34,7 @@ class AcompanhamentoFilter implements InputFilterAwareInterface {
 					array('name' => 'StringTrim'),
 				),
             )));
-            
+
             $inputFilter->add($factory->createInput(array(
                 'name' => 'encaminhado',
                 'required' => false,
@@ -59,7 +53,7 @@ class AcompanhamentoFilter implements InputFilterAwareInterface {
 					)
 				),
             )));
-            
+
             $this->_inputFilter = $inputFilter;
         }
         return $this->_inputFilter;
