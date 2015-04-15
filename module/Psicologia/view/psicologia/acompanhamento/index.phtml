@@ -4,7 +4,6 @@
 ?>
 
 <ol class="breadcrumb">
-    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
     <li><a href="<?php echo $this->url('psicologia') ?>">Psicologia</a></li>
     <li class="active">Acompanhamento</li>
 </ol>
@@ -64,12 +63,6 @@
                                 'id' => $item['id']
                             )) ?>" class="btn btn-default">
                                 <i class="fa fa-tasks"></i> Detalhes
-                            </a>
-                            <a href="<?php echo $this->url('acompanhamento', array(
-                                'action' => 'editar',
-                                'id' => $item['id']
-                            )) ?>" class="btn btn-default">
-                                <i class="fa fa-edit"></i> Editar
                             </a>
                         </div>
                     </td>
