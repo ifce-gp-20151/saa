@@ -18,7 +18,7 @@ class DadosFamiliares
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="dados_familiares_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="saa.dados_familiares_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -284,5 +284,20 @@ class DadosFamiliares
     public function getIdContato()
     {
         return $this->idContato;
+    }
+
+    public function exchangeArray($data) {
+        $this->id = (!empty($data['id'])) ? $data['id'] : null;
+        $this->nome = (!empty($data['nome'])) ? $data['nome'] : null;
+        $this->idade = (!empty($data['idade'])) ? $data['idade'] : null;
+        $this->flMora = (!empty($data['flMora'])) ? true : false;
+        $this->idProfissao = (!empty($data['idProfissao'])) ? $data['idProfissao'] : null;
+        $this->idGrauParentesco = (!empty($data['id_grau_parentesco'])) ? $data['id_grau_parentesco'] : null;
+        $this->idPessoa = (!empty($data['idPessoa'])) ? $data['idPessoa'] : null;
+        $this->idContato = (!empty($data['idContato'])) ? $data['idContato'] : null;
+    }
+
+    public function getArrayCopy() {
+        return get_object_vars($this);
     }
 }

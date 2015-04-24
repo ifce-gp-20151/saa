@@ -142,7 +142,7 @@ class Pessoa
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -165,7 +165,7 @@ class Pessoa
     /**
      * Get nome
      *
-     * @return string 
+     * @return string
      */
     public function getNome()
     {
@@ -188,7 +188,7 @@ class Pessoa
     /**
      * Get cpf
      *
-     * @return string 
+     * @return string
      */
     public function getCpf()
     {
@@ -211,7 +211,7 @@ class Pessoa
     /**
      * Get rg
      *
-     * @return string 
+     * @return string
      */
     public function getRg()
     {
@@ -234,7 +234,7 @@ class Pessoa
     /**
      * Get sexo
      *
-     * @return string 
+     * @return string
      */
     public function getSexo()
     {
@@ -257,7 +257,7 @@ class Pessoa
     /**
      * Get dtNascimento
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDtNascimento()
     {
@@ -280,7 +280,7 @@ class Pessoa
     /**
      * Get idEstadoCivil
      *
-     * @return \Core\Entity\EstadoCivil 
+     * @return \Core\Entity\EstadoCivil
      */
     public function getIdEstadoCivil()
     {
@@ -313,7 +313,7 @@ class Pessoa
     /**
      * Get idProfissao
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdProfissao()
     {
@@ -326,7 +326,7 @@ class Pessoa
      * @param \Core\Entity\DadosFamiliares $idFamiliares
      * @return Pessoa
      */
-    public function addIdFamiliare(\Core\Entity\DadosFamiliares $idFamiliares)
+    public function addIdFamiliares(\Core\Entity\DadosFamiliares $idFamiliares)
     {
         $this->idFamiliares[] = $idFamiliares;
 
@@ -338,7 +338,7 @@ class Pessoa
      *
      * @param \Core\Entity\DadosFamiliares $idFamiliares
      */
-    public function removeIdFamiliare(\Core\Entity\DadosFamiliares $idFamiliares)
+    public function removeIdFamiliares(\Core\Entity\DadosFamiliares $idFamiliares)
     {
         $this->idFamiliares->removeElement($idFamiliares);
     }
@@ -346,7 +346,7 @@ class Pessoa
     /**
      * Get idFamiliares
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdFamiliares()
     {
@@ -379,7 +379,7 @@ class Pessoa
     /**
      * Get idContato
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdContato()
     {
@@ -412,7 +412,7 @@ class Pessoa
     /**
      * Get idEndereco
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdEndereco()
     {

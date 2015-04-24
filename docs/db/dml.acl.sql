@@ -35,6 +35,9 @@ INSERT INTO saa.acl_controllers(id, controller) VALUES ( 9, 'Aluno');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 10, 'Agendamento');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 11, 'Servidor');
 INSERT INTO saa.acl_controllers(id, controller) VALUES ( 12, 'Cargo');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 13, 'Familiar');
+INSERT INTO saa.acl_controllers(id, controller) VALUES ( 14, 'Contato');
+
 
 --
 -- Actions
@@ -57,6 +60,8 @@ INSERT INTO saa.acl_actions(id, action) VALUES ( 15, 'detalhes');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 16, 'ajax-salvar');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 17, 'ajax-buscar-curso');
 INSERT INTO saa.acl_actions(id, action) VALUES ( 18, 'criar-acompanhamento-agendado');
+INSERT INTO saa.acl_actions(id, action) VALUES ( 19, 'ajax-buscar-profissao');
+INSERT INTO saa.acl_actions(id, action) VALUES ( 20, 'ajax-buscar-grau-parentesco');
 
 
 --
@@ -107,6 +112,16 @@ INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 43, 5, 12,  5);--admin/cargo/criar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 44, 5, 12,  6);--admin/cargo/editar
 INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 45, 5, 12,  7);--admin/cargo/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 46, 1, 13,  1);--dados-familiares/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 47, 1, 13,  5);--dados-familiares/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 48, 1, 13,  6);--dados-familiares/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 49, 1, 13,  7);--dados-familiares/deletar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 50, 1, 13, 19);--dados-familiares/ajax-buscar-profissao
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 51, 1, 13, 20);--dados-familiares/ajax-buscar-grau-parentesco
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 52, 1, 14, 1);--contato/index
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 53, 1, 14, 5);--contato/criar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 54, 1, 14, 6);--contato/editar
+INSERT INTO saa.acl_resources(id, module_id, controller_id, action_id) VALUES ( 55, 1, 14, 7);--contato/deletar
 
 --
 -- Privileges
@@ -178,3 +193,13 @@ INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 34, 4, true
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 35, 4, true);--psicologia/agendamento/editar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 36, 4, true);--psicologia/agendamento/deletar
 INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 41, 4, true);--psicologia/acompanhamento/agendamento/criar-acompanhamento-agendado
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 46, 4, true);--dados-familiares/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 47, 4, true);--dados-familiares/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 48, 4, true);--dados-familiares/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 49, 4, true);--dados-familiares/deletar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 50, 4, true);--dados-familiares/ajax-buscar-profissao
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 51, 4, true);--dados-familiares/ajax-buscar-grau-parentesco
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 52, 4, true);--contato/index
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 53, 4, true);--contato/criar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 54, 4, true);--contato/editar
+INSERT INTO saa.acl_privileges(resource_id, role_id, allow) VALUES ( 55, 4, true);--contato/deletar

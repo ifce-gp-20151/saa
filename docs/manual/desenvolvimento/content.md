@@ -204,6 +204,10 @@ public function attachShared(SharedEventManagerInterface $events)
 module/Application/src
 ~~~
 
+./vendor/bin/doctrine-module orm:convert-mapping \
+--from-database annotation --namespace="Core\\Entity\\" \
+module/Core/src
+
 onde `Usuario` é o nome da tabela a ser gerada.
 
 ## Criação dos _getters_ e _setters_

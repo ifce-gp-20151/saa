@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * GrauParentesco
  *
  * @ORM\Table(name="saa.grau_parentesco")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\GrauParentescoRepository")
  */
 class GrauParentesco
 {
@@ -34,7 +34,7 @@ class GrauParentesco
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +57,7 @@ class GrauParentesco
     /**
      * Get descricao
      *
-     * @return string 
+     * @return string
      */
     public function getDescricao()
     {

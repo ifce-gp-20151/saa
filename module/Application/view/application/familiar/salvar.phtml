@@ -1,0 +1,100 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/alertify/alertify.min.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/alertify/themes/bootstrap.min.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/select2/select2.css');
+    $this->headLink()->appendStylesheet($this->basePath() . '/lib/css/select2-bootstrap3-css/select2-bootstrap.css');
+
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/alertify/alertify.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/alertify/alertify.config.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/sprintf/sprintf.min.js');
+    $this->headScript()->appendFile($this->basePath() . '/lib/js/select2/select2.min.js');
+
+    $this->headScript()->appendFile($this->basePath() . '/js/application/familiar/salvar.js');
+?>
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
+    <li class="active"><?php echo $title ?></li>
+</ol>
+
+<h4><?php echo $title ?></h4><hr/>
+
+<?php
+    $form->prepare();
+    echo $this->form()->openTag($form);
+?>
+
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formRow($form->get('id')); ?>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('nome')); ?>
+            <?php echo $this->formInput($form->get('nome')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('nome')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('idade')); ?>
+            <?php echo $this->formInput($form->get('idade')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('idade')); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('idProfissao')); ?>
+            <?php echo $this->formInput($form->get('idProfissao')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('idProfissao')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-md-4">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('idGrauParentesco')); ?>
+            <?php echo $this->formInput($form->get('idGrauParentesco')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('idGrauParentesco')); ?>
+            </div>
+        </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('flMora')); ?>
+            <?php echo $this->formInput($form->get('flMora')); ?>
+            <div class="form-errors">
+                <?php echo $this->formElementErrors($form->get('flMora')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+
+<?php
+    echo $this->form()->closeTag();
+?>

@@ -7,6 +7,22 @@ use Application\Service\Auth;
 return array(
     'router' => array(
         'routes' => array(
+            'familiar' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/familiar[/][:action][/:id][/id_pessoa/:id_pessoa]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                        'id_pessoa' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Familiar',
+                        'action'     => 'index',
+                        'module'     => 'application',
+                    ),
+                ),
+            ),
             'aluno' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -154,6 +170,7 @@ return array(
             'Application\Controller\Auth' => 'Application\Controller\AuthController',
             'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
             'Application\Controller\Aluno' => 'Application\Controller\AlunoController',
+            'Application\Controller\Familiar' => 'Application\Controller\FamiliarController',
         ),
     ),
     'view_manager' => array(

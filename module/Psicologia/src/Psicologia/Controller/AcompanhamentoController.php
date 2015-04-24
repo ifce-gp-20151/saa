@@ -82,10 +82,10 @@ class AcompanhamentoController extends AbstractActionController {
         }
 
         $viewModel = new ViewModel($params);
-    		$viewModel->setVariable('title', 'Novo Acompanhamento');
-    		$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
+		$viewModel->setVariable('title', 'Novo Acompanhamento');
+		$viewModel->setTemplate('psicologia/acompanhamento/salvar.phtml');
 
-    		return $viewModel;
+		return $viewModel;
     }
 
     public function ajaxBuscarAlunoAction() {
@@ -121,13 +121,16 @@ class AcompanhamentoController extends AbstractActionController {
         $obj = $this->getEntityManager()
             ->getRepository('Core\Entity\Acompanhamento')
             ->buscarPor($id);
+
+
+
         $enderecos = $this->getEntityManager()
             ->getRepository('Core\Entity\Endereco')
-            ->listarPor($obj['id']);
+            ->listarPor($obj['id_pessoa']);
 
         $familiares = $this->getEntityManager()
             ->getRepository('Core\Entity\DadosFamiliares')
-            ->listarPor($obj['id']);
+            ->listarPor($obj['id_pessoa']);
 
         $acompanhamentos = $this->getEntityManager()
             ->getRepository('Core\Entity\AcompanhamentoIndividual')

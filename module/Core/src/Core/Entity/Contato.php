@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Contato
  *
  * @ORM\Table(name="saa.contato", indexes={@ORM\Index(name="IDX_C384AB42F3BCFF90", columns={"id_tipo_contato"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\ContatoRepository")
  */
 class Contato
 {
@@ -66,11 +66,23 @@ class Contato
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Contato
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -89,7 +101,7 @@ class Contato
     /**
      * Get contato
      *
-     * @return string 
+     * @return string
      */
     public function getContato()
     {
@@ -112,7 +124,7 @@ class Contato
     /**
      * Get idTipoContato
      *
-     * @return \Core\Entity\TipoContato 
+     * @return \Core\Entity\TipoContato
      */
     public function getIdTipoContato()
     {
@@ -125,7 +137,7 @@ class Contato
      * @param \Core\Entity\DadosFamiliares $idDadosFamiliares
      * @return Contato
      */
-    public function addIdDadosFamiliare(\Core\Entity\DadosFamiliares $idDadosFamiliares)
+    public function addIdDadosFamiliares(\Core\Entity\DadosFamiliares $idDadosFamiliares)
     {
         $this->idDadosFamiliares[] = $idDadosFamiliares;
 
@@ -137,7 +149,7 @@ class Contato
      *
      * @param \Core\Entity\DadosFamiliares $idDadosFamiliares
      */
-    public function removeIdDadosFamiliare(\Core\Entity\DadosFamiliares $idDadosFamiliares)
+    public function removeIdDadosFamiliares(\Core\Entity\DadosFamiliares $idDadosFamiliares)
     {
         $this->idDadosFamiliares->removeElement($idDadosFamiliares);
     }
@@ -145,7 +157,7 @@ class Contato
     /**
      * Get idDadosFamiliares
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdDadosFamiliares()
     {
@@ -178,7 +190,7 @@ class Contato
     /**
      * Get idPessoa
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdPessoa()
     {

@@ -148,12 +148,19 @@
     </div>
     <div class="col-md-6">
         <div class="btn-group pull-right">
+            <a href="<?php echo $this->url('familiar', array(
+                'action' => 'criar',
+                'id_pessoa' => $obj['id_pessoa'],
+            )) ?>" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Familiar
+            </a>
             <a href="#" class="btn btn-info">
                 <i class="fa fa-group"></i>
                 Mostrar Genograma
             </a>
         </div>
     </div>
+
 </div>
 
 <div class="row">
@@ -309,7 +316,7 @@
                                 'id' => $item["id"],
                                 'id_acompanhamento' => $id,
                             )) ?>" class="btn btn-default">
-                                <i class="fa fa-edit"></i> Realizar
+                                <i class="fa fa-check-square"></i> Realizar
                             </a>
                         </div>
                         <div class="btn-group">
