@@ -22,22 +22,26 @@
 <?php
     $form->prepare();
     echo $this->form()->openTag($form);
+
+    $familiares = $form->get('DadosFamiliares');
+
 ?>
 
 
 <div class="row">
     <div class="col-sm-2 col-md-2">
         <div class="form-group">
-            <?php echo $this->formRow($form->get('id')); ?>
+            <?php echo $this->formRow($familiares->get('id')); ?>
         </div>
     </div>
 
     <div class="col-sm-6 col-md-6">
         <div class="form-group">
-            <?php echo $this->formLabel($form->get('nome')); ?>
-            <?php echo $this->formInput($form->get('nome')); ?>
+
+            <?php echo $this->formRow($familiares->get('nome')); ?>
+
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('nome')); ?>
+                <?php echo $this->formElementErrors($familiares->get('nome')); ?>
             </div>
         </div>
     </div>
@@ -46,20 +50,18 @@
 <div class="row">
     <div class="col-sm-2 col-md-2">
         <div class="form-group">
-            <?php echo $this->formLabel($form->get('idade')); ?>
-            <?php echo $this->formInput($form->get('idade')); ?>
+            <?php echo $this->formRow($familiares->get('idade')); ?>
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('idade')); ?>
+                <?php echo $this->formElementErrors($familiares->get('idade')); ?>
             </div>
         </div>
     </div>
 
     <div class="col-sm-4 col-md-4">
         <div class="form-group">
-            <?php echo $this->formLabel($form->get('idProfissao')); ?>
-            <?php echo $this->formInput($form->get('idProfissao')); ?>
+            <?php echo $this->formRow($familiares->get('idProfissao')); ?>
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('idProfissao')); ?>
+                <?php echo $this->formElementErrors($familiares->get('idProfissao')); ?>
             </div>
         </div>
     </div>
@@ -68,10 +70,9 @@
 <div class="row">
     <div class="col-sm-4 col-md-4">
         <div class="form-group">
-            <?php echo $this->formLabel($form->get('idGrauParentesco')); ?>
-            <?php echo $this->formInput($form->get('idGrauParentesco')); ?>
+            <?php echo $this->formRow($familiares->get('idGrauParentesco')); ?>
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('idGrauParentesco')); ?>
+                <?php echo $this->formElementErrors($familiares->get('idGrauParentesco')); ?>
             </div>
         </div>
 
@@ -79,11 +80,12 @@
 
 <div class="row">
     <div class="col-sm-2 col-md-2">
-        <div class="form-group">
-            <?php echo $this->formLabel($form->get('flMora')); ?>
-            <?php echo $this->formInput($form->get('flMora')); ?>
+        <div class="checkbox">
+            <label><?php echo $this->formInput($familiares->get('flMora')); ?>
+                <?php echo $this->formLabel($familiares->get('flMora')); ?></label>
+
             <div class="form-errors">
-                <?php echo $this->formElementErrors($form->get('flMora')); ?>
+                <?php echo $this->formElementErrors($familiares->get('flMora')); ?>
             </div>
         </div>
     </div>

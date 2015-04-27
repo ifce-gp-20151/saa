@@ -22,7 +22,10 @@ class FamiliarFilter implements InputFilterAwareInterface {
             $inputFilter = new InputFilter();
             $factory = new InputFactory();
 
-
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'id',
+                'required' => false,
+            )));
 
             $inputFilter->add($factory->createInput(array(
                 'name' => 'nome',

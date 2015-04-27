@@ -7,7 +7,6 @@ use Zend\View\Model\ViewModel;
 use Core\Controller\ActionController;
 use Zend\View\Model\JsonModel;
 use Application\Form\FamiliarForm;
-use Application\Form\FamiliarFilter;
 use Core\Entity\DadosFamiliares;
 
 class FamiliarController extends ActionController {
@@ -39,53 +38,32 @@ class FamiliarController extends ActionController {
     }
 
     public function criarAction() {
-        $form = new FamiliarForm();
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $form = new FamiliarForm($objectManager);
+
         //valida pessoa
         $id_pessoa = (int) $this->params()->fromRoute( 'id_pessoa' );
         $pessoa = $this->getEntityManager()->getRepository('Core\Entity\Pessoa')
                     ->find($id_pessoa);
-        if (! $pessoa) {
+        if (!$pessoa) {
             $this->messages()->flashWarning(sprintf('Pessoa com id %d não encontrado.', $id_pessoa));
             return $this->redirect()->toRoute('familiar');
         }
 
+        $obj = new DadosFamiliares();
+        $obj->addIdPessoa($pessoa);
+        $form->bind($obj);
+
         $request = $this->getRequest();
-        if($request->isPost()){
-            $obj = new DadosFamiliares();
-            $filter = new FamiliarFilter();
-            $form->setInputFilter($filter->getInputFilter());
+        if($request->isPost()) {
             $form->setData($request->getPost());
-
-            if($form->isValid()) {
-                $data = $form->getData();
-
-                //validar profissao
-                $profissao = $this->getEntityManager()->getRepository('Core\Entity\Profissao')
-                    ->find($data['idProfissao']);
-                if (! $profissao) {
-                    $this->messages()->flashWarning(sprintf('Profissão com id %d não encontrada.', $data['idProfissao']));
-                    return $this->redirect()->toRoute('familiar');
-                }
-
-                //validar grau de parentesco
-                $grauParentesco = $this->getEntityManager()->getRepository('Core\Entity\GrauParentesco')
-                    ->find($data['idGrauParentesco']);
-                if (! $grauParentesco) {
-                    $this->messages()->flashWarning(sprintf('Grau de parentesco com id %d não encontrado.', $data['idGrauParentesco']));
-                    return $this->redirect()->toRoute('familiar');
-                }
-
-                $obj->exchangeArray($data);
-                $obj->addIdPessoa($pessoa);
-                $obj->setIdGrauParentesco($grauParentesco);
-                $obj->setIdProfissao($profissao);
-                $pessoa->addIdFamiliares($obj);
-                try {
-                    $this->getEntityManager()->persist($obj);
-                    $this->getEntityManager()->flush();
+            if($form->isValid()){
+                try{
+                    $objectManager->persist($obj);
+                    $objectManager->flush();
                     $this->messages()->flashSuccess('Familiar criado com sucesso.');
                     return $this->redirect()->toRoute('familiar');
-                } catch (\Exception $e) {
+                } catch(\Exception $e){
                     $this->messages()->error('Ocorreu um erro ao criar. Detalhes: ' . $e->getMessage());
                 }
             }
@@ -151,6 +129,10 @@ class FamiliarController extends ActionController {
     }
 
     public function editarAction() {
+
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $form = new FamiliarForm($objectManager);
+
         $id = (int) $this->params()->fromRoute('id');
         $id_pessoa = (int) $this->params()->fromRoute('id_pessoa');
 
@@ -176,13 +158,10 @@ class FamiliarController extends ActionController {
             );
         }
 
-        $form = new FamiliarForm();
         $form->bind( $obj );
-
         $request = $this->getRequest();
+
         if ($request->isPost()) {
-            $filter = new FamiliarFilter();
-            $form->setInputFilter($filter->getInputFilter());
             $form->setData($request->getPost());
 
             if($form->isValid()) {
@@ -219,8 +198,9 @@ class FamiliarController extends ActionController {
 
                     $obj->setIdProfissao($profissao);
                     $obj->setIdGrauParentesco($grauParentesco);
-                    $this->getEntityManager()->flush();
+                    $objectManager->flush();
                     $this->messages()->flashSuccess('Dados familiares atualizados com sucesso.');
+
                     return $this->redirect()->toRoute(
                         'familiar', array(
                             'action' => 'index',
