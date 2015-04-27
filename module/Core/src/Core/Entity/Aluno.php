@@ -17,8 +17,6 @@ class Aluno
      *
      * @ORM\Column(name="matricula", type="bigint", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="aluno_matricula_seq", allocationSize=1, initialValue=1)
      */
     private $matricula;
 
@@ -128,5 +126,14 @@ class Aluno
     public function getIdCurso()
     {
         return $this->idCurso;
+    }
+    
+    public function exchangeArray($data) {
+        $this->matricula = (!empty($data['matricula'])) ? $data['matricula'] : null;
+        $this->situacaoEscolar = (!empty($data['situacao_escolar'])) ? $data['situacao_escolar'] : null;
+    }
+	
+    public function getArrayCopy() {
+        return get_object_vars($this);
     }
 }

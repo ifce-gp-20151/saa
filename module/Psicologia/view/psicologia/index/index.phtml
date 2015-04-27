@@ -3,7 +3,6 @@
 ?>
 
 <ol class="breadcrumb">
-    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
     <li class="active">Psicologia</li>
 </ol>
 
@@ -15,6 +14,13 @@
                 <a href="<?php echo $this->url('acompanhamento') ?>">
                     <img src="<?php echo $this->basePath() . '/images/psicologia/index/index/acompanhamento.png' ?>"
                          alt="Acompanhamento" class="center"/>
+                </a>
+            </li>
+
+            <li rel="tooltip" title="Aluno">
+                <a href="<?php echo $this->url('aluno') ?>">
+                    <img src="<?php echo $this->basePath() . '/images/application/index/index/aluno.png' ?>"
+                         alt="Aluno" class="center"/>
                 </a>
             </li>
 

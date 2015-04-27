@@ -22,6 +22,8 @@
     "$": false,
     "Mousetrap": false,
     "Quill": false,
-    "alertify": false
+    "alertify": false,
+    "sprintf": false,
+    "console": false
   }
 }

@@ -2,13 +2,14 @@
 
 namespace Psicologia\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Core\Controller\ActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Psicologia\Form\AcompanhamentoIndividualForm;
 use Core\Entity\AcompanhamentoIndividual;
+use Coreproc\CryptoGuard;
 
-class AcompanhamentoIndividualController extends AbstractActionController {
+class AcompanhamentoIndividualController extends ActionController {
 
     /**
      * @var DoctrineORMEntityManager
@@ -38,10 +39,17 @@ class AcompanhamentoIndividualController extends AbstractActionController {
                 $entity = $this->getEntityManager()
                     ->getRepository('Core\Entity\AcompanhamentoIndividual');
                 $result = $entity->buscarNumeroProximoEncontro($id_acompanhamento);
+
+                $crypto = $this->getService('Application\Service\Crypto');
+                $passphrase = $crypto->gerarHash();
+                $cryptoGuard = new CryptoGuard($passphrase);
+                $encryptedText = $cryptoGuard->encrypt("");
+
                 $model = new AcompanhamentoIndividual();
                 $model->setNumeroEncontro($result['max']);
                 $model->setIdAcompanhamento($obj);
-                $model->setDescricao("");
+                $model->setDescricao($encryptedText);
+                $model->setPassphrase($passphrase);
                 $this->getEntityManager()->persist($model);
                 $this->getEntityManager()->flush();
                 return $this->redirect()->toRoute('acompanhamento-individual', array(
@@ -80,6 +88,9 @@ class AcompanhamentoIndividualController extends AbstractActionController {
                 'id' => $id_acompanhamento
             ));
         }
+        $cryptoGuard = new CryptoGuard($obj->getPassphrase());
+        $decryptedText = $cryptoGuard->decrypt($obj->getDescricao());
+        $obj->setDescricao($decryptedText);
 
         $form = new AcompanhamentoIndividualForm();
         $form->bind($obj);
@@ -105,7 +116,9 @@ class AcompanhamentoIndividualController extends AbstractActionController {
                 if (! $obj) {
                     $params['error'] = 'Acompanhamento Individual não encontrado.';
                 } else {
-                    $obj->setDescricao($descricao);
+                    $cryptoGuard = new CryptoGuard($obj->getPassphrase());
+                    $encryptedText = $cryptoGuard->encrypt($descricao);
+                    $obj->setDescricao($encryptedText);
                     $this->getEntityManager()->flush();
                     $params['ok'] = true;
                 }

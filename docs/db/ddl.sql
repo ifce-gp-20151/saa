@@ -628,12 +628,12 @@ CREATE TABLE profissao (
 -- Name: profissao_id_seq; Type: SEQUENCE; Schema: saa; Owner: -
 --
 
-CREATE SEQUENCE profissao_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+--CREATE SEQUENCE profissao_id_seq
+  --  START WITH 1
+--    INCREMENT BY 1
+ --   NO MINVALUE
+  --  NO MAXVALUE
+--    CACHE 1;
 
 
 --
@@ -642,7 +642,7 @@ CREATE SEQUENCE profissao_id_seq
 -- Name: profissao_id_seq; Type: SEQUENCE OWNED BY; Schema: saa; Owner: -
 --
 
-ALTER SEQUENCE profissao_id_seq OWNED BY profissao.id;
+--ALTER SEQUENCE profissao_id_seq OWNED BY profissao.id;
 
 
 --
@@ -808,7 +808,7 @@ ALTER TABLE ONLY pessoa ALTER COLUMN id SET DEFAULT nextval('pessoa_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: saa; Owner: -
 --
 
-ALTER TABLE ONLY profissao ALTER COLUMN id SET DEFAULT nextval('profissao_id_seq'::regclass);
+--ALTER TABLE ONLY profissao ALTER COLUMN id SET DEFAULT nextval('profissao_id_seq'::regclass);
 
 
 --

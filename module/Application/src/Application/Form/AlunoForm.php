@@ -4,13 +4,14 @@ namespace Application\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
+use Application\Form\PessoaForm;
 
 /**
  * Descrição de FamiliarForm
  *
  * @author
  */
-class AlunoForm extends Form {
+class AlunoForm extends PessoaForm {
 
     public function __construct() {
         parent::__construct('aluno');
@@ -19,7 +20,14 @@ class AlunoForm extends Form {
         $this->add($this->_matricula());
         $this->add($this->_id_curso());
         $this->add($this->_situacao_escolar());
-        $this->add($this->_id_pessoa());
+        
+        $this->add($this->_nome());
+        $this->add($this->_cpf());
+        $this->add($this->_rg());
+        $this->add($this->_sexo());
+        $this->add($this->_dt_nascimento());
+        $this->add($this->_id_estado_civil());
+		
         $this->add($this->_submit());
     }
 
@@ -32,7 +40,7 @@ class AlunoForm extends Form {
     }
 
     protected function _matricula() {
-        $e = new Element\Number('matricula');
+        $e = new Element\Text('matricula');
         $e->setLabel('* Matrícula:');
         $e->setAttribute('id', 'matricula');
         $e->setAttribute('class', 'form-control numeric');
@@ -52,7 +60,7 @@ class AlunoForm extends Form {
 
     protected function _situacao_escolar() {
         $e = new Element\Textarea('situacao_escolar');
-        $e->setLabel('Situação Escolar:');
+        $e->setLabel('* Situação Escolar:');
         $e->setAttribute('id', 'situacao_escolar');
         $e->setAttribute('rows', 6);
         $e->setAttribute('class', 'form-control');

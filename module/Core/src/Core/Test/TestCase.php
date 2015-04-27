@@ -1,5 +1,4 @@
 <?php
-
 namespace Core\Test;
 
 use Zend\Db\Adapter\Adapter;
@@ -10,8 +9,8 @@ use Zend\ServiceManager\ServiceManager;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\Mvc\MvcEvent;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase {
-
+abstract class TestCase extends \PHPUnit_Framework_TestCase
+{
     /**
      * @var Zend\ServiceManager\ServiceManager
      */
@@ -27,12 +26,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
      */
     protected $di;
 
-    public function setup() {
-        
+    public function setup()
+    {
         parent::setup();
 
-        $config = include 'config/application.config.php';
-        $config['module_listener_options']['config_static_paths'] = array(getcwd() . '/config/test.config.php');
+        //$config = include 'config/application.config.php';
+        //$config['module_listener_options']['config_static_paths'] = array(getcwd() . '/config/test.config.php');
+        $config = include 'config/test.config.php';
 
         if (file_exists(__DIR__ . '/config/test.config.php')) {
             $moduleConfig = include __DIR__ . '/config/test.config.php';
@@ -40,9 +40,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
         }
 
         $this->serviceManager = new ServiceManager(new ServiceManagerConfig(
-                isset($config['service_manager']) ? $config['service_manager'] : array()
+            isset($config['service_manager']) ? $config['service_manager'] : array()
         ));
-        
         $this->serviceManager->setService('ApplicationConfig', $config);
         $this->serviceManager->setFactory('ServiceListener', 'Zend\Mvc\Service\ServiceListenerFactory');
 
@@ -50,17 +49,9 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
         $moduleManager->loadModules();
         $this->routes = array();
         foreach ($moduleManager->getModules() as $m) {
-            if (in_array($m, array(
-                'ZFTool',
-                'DOMPDFModule',
-                //'ZealMessages',
-            ))) {
-                continue;
-            }
-            
             $moduleConfig = include __DIR__ . '/../../../../' . ucfirst($m) . '/config/module.config.php';
             if (isset($moduleConfig['router'])) {
-                foreach ($moduleConfig['router']['routes'] as $key => $name) {
+                foreach($moduleConfig['router']['routes'] as $key => $name) {
                     $this->routes[$key] = $name;
                 }
             }
@@ -68,28 +59,30 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
         $this->serviceManager->setAllowOverride(true);
 
         $this->application = $this->serviceManager->get('Application');
-        $this->event = new MvcEvent();
+        $this->event  = new MvcEvent();
         $this->event->setTarget($this->application);
         $this->event->setApplication($this->application)
-                ->setRequest($this->application->getRequest())
-                ->setResponse($this->application->getResponse())
-                ->setRouter($this->serviceManager->get('Router'));
+            ->setRequest($this->application->getRequest())
+            ->setResponse($this->application->getResponse())
+            ->setRouter($this->serviceManager->get('Router'));
 
         //$this->createDatabase();
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         parent::tearDown();
         //$this->dropDatabase();
     }
 
     /**
      * Retrieve TableGateway
-     * 
+     *
      * @param  string $table
      * @return TableGateway
      */
-    protected function getTable($table) {
+    protected function getTable($table)
+    {
         $sm = $this->serviceManager;
         $dbAdapter = $sm->get('DbAdapter');
         $tableGateway = new TableGateway($dbAdapter, $table, new $table);
@@ -104,43 +97,46 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
      * @param  string $service
      * @return Service
      */
-    protected function getService($service) {
+    protected function getService($service)
+    {
         return $this->serviceManager->get($service);
     }
 
     /**
      * @return void
      */
-    public function createDatabase() {
+    public function createDatabase()
+    {
         $dbAdapter = $this->getAdapter();
 
-        if (get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Sqlite') {
+        if ( get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Sqlite' ) {
             //enable foreign keys on sqlite
             $dbAdapter->query('PRAGMA foreign_keys = ON;', Adapter::QUERY_MODE_EXECUTE);
         }
 
-        if (get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Mysql') {
+        if ( get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Mysql' ) {
             //enable foreign keys on mysql
             $dbAdapter->query('SET FOREIGN_KEY_CHECKS = 1;', Adapter::QUERY_MODE_EXECUTE);
         }
 
-        $queries = include \Bootstrap::getModulePath() . '/data/test.data.php';
+        /*$queries = include \Bootstrap::getModulePath() . '/data/test.data.php';
         foreach ($queries as $query) {
             $dbAdapter->query($query['create'], Adapter::QUERY_MODE_EXECUTE);
-        }
+        }*/
     }
 
     /**
      * @return void
      */
-    public function dropDatabase() {
+    public function dropDatabase()
+    {
         $dbAdapter = $this->getAdapter();
 
-        if (get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Sqlite') {
+        if ( get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Sqlite' ) {
             //disable foreign keys on sqlite
             $dbAdapter->query('PRAGMA foreign_keys = OFF;', Adapter::QUERY_MODE_EXECUTE);
         }
-        if (get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Mysql') {
+        if ( get_class($dbAdapter->getPlatform()) == 'Zend\Db\Adapter\Platform\Mysql' ) {
             //disable foreign keys on mysql
             $dbAdapter->query('SET FOREIGN_KEY_CHECKS = 0;', Adapter::QUERY_MODE_EXECUTE);
         }
@@ -152,11 +148,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * 
+     *
      * @return Zend\Db\Adapter\Adapter
      */
-    public function getAdapter() {
+    public function getAdapter()
+    {
         return $this->serviceManager->get('DbAdapter');
     }
-
 }

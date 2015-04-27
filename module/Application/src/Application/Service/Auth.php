@@ -19,6 +19,7 @@ class Auth extends Service {
     const DEFAULT_ROLE_ID = 1;
     const ROLE_ID_USUARIO = 2;
     const ROLE_ID_ADMIN = 3;
+    const ROLE_ID_PSICOLOGIA = 4;
 
     /**
      * Adapter usado para a autenticação

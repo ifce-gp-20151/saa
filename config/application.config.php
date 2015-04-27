@@ -17,6 +17,7 @@ return array(
         'Psicologia',
         'Pedagogia',
         'Admin',
+        'Coreproc',
         //'OcraServiceManager',
     ),
     'module_listener_options' => array(

@@ -10,7 +10,6 @@
 </style>
 
 <ol class="breadcrumb">
-    <li><a href="<?php echo $this->url('home') ?>">Início</a></li>
     <li><a href="<?php echo $this->url('psicologia') ?>">Psicologia</a></li>
     <li><a href="<?php echo $this->url('acompanhamento') ?>">Acompanhamento</a></li>
     <li class="active">Detalhes</li>
@@ -160,7 +159,6 @@
             </a>
         </div>
     </div>
-
 </div>
 
 <div class="row">
@@ -312,11 +310,11 @@
                     <td>
                         <div class="btn-group">
                             <a href="<?php echo $this->url('agendamento', array(
-                                'action' => 'criarAcompanhamentoAgendado',
+                                'action' => 'criar-acompanhamento-agendado',
                                 'id' => $item["id"],
                                 'id_acompanhamento' => $id,
                             )) ?>" class="btn btn-default">
-                                <i class="fa fa-check-square"></i> Realizar
+                                <i class="fa fa-calendar"></i> Realizar
                             </a>
                         </div>
                         <div class="btn-group">
